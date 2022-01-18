@@ -1,0 +1,19 @@
+<div class="layout">
+    <div class="menu">
+        <div class='menu__title'>Sections</div>
+        <mat-selection-list class='menu__list' [multiple]="false">
+            <mat-list-option>1.Personal</mat-list-option>
+            <mat-list-option>2.Laboral</mat-list-option>
+            <mat-list-option>3.Academic</mat-list-option>
+            <mat-list-option>4.Languages</mat-list-option>
+            <mat-list-option>5.Skills</mat-list-option>
+            <mat-list-option>6.Achievements</mat-list-option>
+            <mat-list-option>7.Certifications</mat-list-option>
+            <mat-list-option>8.Interests</mat-list-option>
+            <mat-list-option>9.Objective</mat-list-option>
+        </mat-selection-list>
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>
