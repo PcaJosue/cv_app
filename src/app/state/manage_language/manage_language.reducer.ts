@@ -4,10 +4,6 @@ import { LANGUAGE_ES } from "../../common/languages/language.es";
 import * as actions from './manage_language.actions'
 /**initial state */
 
-export interface ManageLanguageState {
-    title: string,
-    labels: any
-}
 const INITIAL_STATE = {
     language: 'en',
     labels: LANGUAGE_EN
@@ -21,11 +17,6 @@ export const onChangeLanguage = (state: any, { code }) => {
     }
 }
 
-/**selector */
-export const selectMain = (state: any) => {
-    console.log('state', state);
-    return state.manage_language.labels.main
-};
 
 /*reducer*/
 const _manageLanguageReducer = createReducer(

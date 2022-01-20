@@ -8,7 +8,7 @@ import { AppRoutingModule } from './modules/app.routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from './modules/material.module'
 import { ComponentModule } from './modules/component.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     StoreModule.forRoot(reducers),
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ export const LANGUAGE_ES = {
         upload: 'Subir Data'
     },
     menu: {
+        title: 'Sections',
         personal: 'Personal',
         laboral: 'Laboral',
         academic: 'Academic',

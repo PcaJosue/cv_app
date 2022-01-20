@@ -9,3 +9,18 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.w-full {
+    width: 100%;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    &__title {
+        font-weight: bold;
+        font-size: 25px;
+    }
+}

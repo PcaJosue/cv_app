@@ -9,7 +9,7 @@ const routes: Routes = [
     {
         path: 'create', component: CreateCVComponent,
         children: [
-            { path: 'personal', component: PersonalComponent }
+            { path: 'personal', component: PersonalComponent },
         ]
     },
 ];

@@ -6,6 +6,7 @@ import { PersonalComponent } from '../components/personal/personal.component'
 
 
 import { AppRoutingModule } from './app.routing.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -16,6 +17,7 @@ import { AppRoutingModule } from './app.routing.module';
     imports: [
         AppRoutingModule,
         MaterialModule,
+        CommonModule
     ],
     providers: [],
 })

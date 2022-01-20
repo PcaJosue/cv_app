@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-personal',
@@ -6,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./personal.component.scss']
 })
 export class PersonalComponent implements OnInit {
+
+  personalForm = new FormGroup({
+    firstName: new FormControl(null, Validators.required),
+    lastName: new FormControl(null, Validators.required),
+    ocupation: new FormControl(null, Validators.required),
+  });
+
 
   constructor() { }
 

@@ -6,6 +6,7 @@ export const LANGUAGE_EN = {
         title: 'Curriculum Vitae App'
     },
     menu: {
+        title: 'Sections',
         personal: 'Personal',
         laboral: 'Laboral',
         academic: 'Academic',

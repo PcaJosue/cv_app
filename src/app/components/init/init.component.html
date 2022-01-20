@@ -1,10 +1,10 @@
 <div class='content'>
-    <mat-card (click)='router.navigate(["create"])' class='item'>
+    <mat-card (click)='router.navigate(["create","personal"])' class='item'>
         <mat-icon class='item__icon'>add_circle_outline</mat-icon>
-        <div class='item__description'>Create CV</div>
+        <div class='item__description'>{{(labels$ | async).create}}</div>
     </mat-card>
     <mat-card (click)='router.navigate(["upload"])' class='item'>
         <mat-icon class='item__icon'>upload</mat-icon>
-        <div class='item__description'>Upload Data</div>
+        <div class='item__description'>{{(labels$ | async).upload}}</div>
     </mat-card>
 </div>
