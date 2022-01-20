@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 }
 
 /**actions */
-export const onChangeLanguage = (state: any, { code }) => {
+const onChangeLanguage = (state: any, { code }) => {
     return {
         language: code,
         labels: code === 'en' ? LANGUAGE_EN : LANGUAGE_ES

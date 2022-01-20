@@ -2,7 +2,8 @@ export const LANGUAGE_ES = {
 
     main: {
         create: 'Crear CV',
-        upload: 'Subir Data'
+        upload: 'Subir Data',
+        title: 'Curriculum Vitae App'
     },
     menu: {
         title: 'Sections',
