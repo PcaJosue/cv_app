@@ -1,15 +1,18 @@
 import { createReducer, on } from "@ngrx/store";
-import { addPersonalInformation } from "./personal.actions";
+import * as actions from "./personal.actions";
 
 /**actions */
-const onAddPersonalInformation = (state) => {
-    console.log('reducer');
+const onAddPersonalInformation = (state: any, { data }) => {
+    console.log('state', state);
+    return data;
 }
 
+const INITIAL: any = {}
 
 /*reducer*/
-const _personalReducer = createReducer(null,
-    on(addPersonalInformation, onAddPersonalInformation),
+const _personalReducer = createReducer(
+    INITIAL,
+    on(actions.addPersonalInformation, onAddPersonalInformation),
 );
 
 

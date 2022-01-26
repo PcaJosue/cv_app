@@ -2,8 +2,7 @@
     <div class="menu">
         <div class='menu__title'>{{(labels$ |async).title}}</div>
         <mat-selection-list class='menu__list' [multiple]="false">
-            <mat-list-option routerLink='personal' routerLinkActive='active'>1.{{(labels$ |async).personal}}
-            </mat-list-option>
+            <mat-list-option>1.{{(labels$ |async).personal}}</mat-list-option>
             <mat-list-option>2.{{(labels$ |async).laboral}}</mat-list-option>
             <mat-list-option>3.{{(labels$ |async).academic}}</mat-list-option>
             <mat-list-option>4.{{(labels$ |async).languages}}</mat-list-option>

@@ -7,22 +7,34 @@ import { reducers } from './state/reducers'
 import { AppRoutingModule } from './modules/app.routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from './modules/material.module'
-import { ComponentModule } from './modules/component.module';
+import { CreateCVComponent } from './components/create-cv/create-cv.component';
+import { InitComponent } from './components/init/init.component';
+import { PersonalComponent } from './components/personal/personal.component';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AlertService } from './services/alert.service';
+import { LaboralComponent } from './components/laboral/laboral.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    CreateCVComponent,
+    InitComponent,
+    PersonalComponent,
+    LaboralComponent
+  ],
   imports: [
-    ComponentModule,
     AppRoutingModule,
     BrowserModule,
     MaterialModule,
     StoreModule.forRoot(reducers),
     BrowserAnimationsModule,
+    MaterialModule,
+    CommonModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./app/styles/colors.scss";
+@import "./app/styles/mixins.scss";
 
 html,
 body {
@@ -22,5 +23,24 @@ body {
     &__title {
         font-weight: bold;
         font-size: 25px;
+    }
+    &__subtitle {
+        font-weight: bold;
+        font-size: 20px;
+    }
+}
+
+.alert {
+    &__error {
+        @include alert($alert-error);
+    }
+    &__info {
+        @include alert($alert-info);
+    }
+    &__warning {
+        @include alert($alert-warning);
+    }
+    &__success {
+        @include alert($alert-success);
     }
 }

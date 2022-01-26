@@ -5,6 +5,10 @@ import { MatListModule } from '@angular/material/list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 
 @NgModule({
@@ -14,7 +18,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
         MatListModule,
         FlexLayoutModule,
         MatSelectModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatSnackBarModule
+
+
 
 
     ],

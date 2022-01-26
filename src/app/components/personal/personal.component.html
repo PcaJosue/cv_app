@@ -1,19 +1,110 @@
-<form>
+<form [formGroup]="personalForm">
     <div class='item'>
 
-        <div class="item__title">Personal Data</div>
+        <div class="w-full" fxLayout='row' fxLayoutAlign='space-between center'>
+            <div class="item__title">Personal Data</div>
+            <button mat-raised-button (click)='complete()' color="primary">Next</button>
+        </div>
 
         <div class='w-full' fxLayout='row' fxLayoutGap='2rem'>
 
             <mat-form-field appearance="outline">
                 <mat-label>First Name</mat-label>
-                <input matInput>
+                <input matInput formControlName="firstName">
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Last Name</mat-label>
-                <input matInput>
+                <input matInput formControlName='lastName'>
             </mat-form-field>
+
+        </div>
+
+        <div class="w-full" fxLayout='row' fxLayoutGap='2rem'>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Career/Ocupation</mat-label>
+                <input matInput formControlName="ocupation">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Phone</mat-label>
+                <input matInput type='tel' formControlName="phone">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput type='email' formControlName="email">
+            </mat-form-field>
+
+        </div>
+
+        <div class="w-full" fxLayout='row' fxLayoutGap='2rem'>
+            <mat-form-field appearance="outline">
+                <mat-label>Country</mat-label>
+                <input matInput type='text' formControlName="country">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>State/Province/City</mat-label>
+                <input matInput type='text' formControlName="state">
+            </mat-form-field>
+        </div>
+
+        <div class="item__subtitle">Social Networks</div>
+
+        <div class="w-full" fxLayout='row' fxLayoutGap='2rem' class='networks' formGroupName="networks">
+
+            <div fxLayout='row' fxLayoutAlign='start center'>
+                <img class='networks__icon' src="assets/icons/github.svg" alt="">
+                <mat-form-field appearance="outline">
+                    <mat-label>Github</mat-label>
+                    <input matInput type='text' formControlName="github">
+                </mat-form-field>
+            </div>
+
+            <div fxLayout='row' fxLayoutAlign='start center'>
+                <img class='networks__icon' src="assets/icons/linkedin.svg" alt="">
+                <mat-form-field appearance="outline">
+                    <mat-label>LinkedIn</mat-label>
+                    <input matInput type='text' formControlName="linkedin">
+                </mat-form-field>
+            </div>
+
+            <div fxLayout='row' fxLayoutAlign='start center'>
+                <img class='networks__icon' src="assets/icons/twitter.svg" alt="">
+                <mat-form-field appearance="outline">
+                    <mat-label>Twitter</mat-label>
+                    <input matInput type='text' formControlName="twitter">
+                </mat-form-field>
+            </div>
+
+        </div>
+
+        <div class="w-full" fxLayout='row' fxLayoutGap='2rem' class='networks' formGroupName="networks">
+
+            <div fxLayout='row' fxLayoutAlign='start center'>
+                <img class='networks__icon' src="assets/icons/instagram.svg" alt="">
+                <mat-form-field appearance="outline">
+                    <mat-label>Instagram</mat-label>
+                    <input matInput type='text' formControlName="instagram">
+                </mat-form-field>
+            </div>
+
+            <div fxLayout='row' fxLayoutAlign='start center'>
+                <img class='networks__icon' src="assets/icons/facebook.svg" alt="">
+                <mat-form-field appearance="outline">
+                    <mat-label>Facebook</mat-label>
+                    <input matInput type='text' formControlName="facebook">
+                </mat-form-field>
+            </div>
+
+            <div fxLayout='row' fxLayoutAlign='start center'>
+                <mat-form-field appearance="outline">
+                    <mat-label>Other</mat-label>
+                    <input matInput type='text' formControlName="other">
+                </mat-form-field>
+            </div>
 
         </div>
 

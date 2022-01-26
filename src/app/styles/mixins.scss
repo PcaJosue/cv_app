@@ -1,0 +1,7 @@
+@mixin alert($color) {
+    color: $white-color;
+    background: $color !important;
+    .mat-simple-snackbar-action {
+        color: $dark-color;
+    }
+}

@@ -1,5 +1,5 @@
-import { createAction } from '@ngrx/store'
+import { createAction, props } from '@ngrx/store'
 
 
 
-export const addPersonalInformation = createAction('[Personal] add');
+export const addPersonalInformation = createAction('[Personal] add', props<{ data: any }>());
