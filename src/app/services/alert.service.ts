@@ -15,7 +15,7 @@ export class AlertService {
       panelClass: this.getClass(type),
       duration: duration
     }
-    this.reference = this._snackBar.open(message, 'close', config);
+    this.reference = this._snackBar.open(message, 'X', config);
   }
 
   close() {

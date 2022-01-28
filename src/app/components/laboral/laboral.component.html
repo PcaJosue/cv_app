@@ -1,5 +1,102 @@
-<p>laboral works!</p>
+<form [formGroup]="laboralForm">
+    <div class='item'>
 
+        <div class="w-full" fxLayout='row' fxLayoutAlign='space-between center'>
+            <div class="item__title">{{(labels$ | async).title}}</div>
+            <div fxLayout='row' fxLayoutGap='1rem'>
+                <button mat-raised-button type='button' (click)='complete()' color="primary">{{(labels$ |
+                    async).buttons.next}}</button>
+            </div>
+        </div>
 
-<button (click)='back()'> back</button>
-<button (click)='next()'> next</button>
+        <div class='w-full' class='laboral__content'>
+            <div class='w-full' fxLayout='row' fxLayoutGap='2rem'>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{(labels$ | async).job}}</mat-label>
+                    <input matInput formControlName="job">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{(labels$ | async).employer}}</mat-label>
+                    <input matInput formControlName='employer'>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{(labels$ | async).country}}</mat-label>
+                    <input matInput formControlName="country">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{(labels$ | async).city}}</mat-label>
+                    <input matInput type='text' formControlName="city">
+                </mat-form-field>
+
+            </div>
+
+            <div class="w-full" fxLayout='row' fxLayoutGap='2rem'>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{(labels$ | async).startDate}}</mat-label>
+                    <input matInput type='date' formControlName="startDate">
+                </mat-form-field>
+
+                <div fxLyout='row' fxLayoutGap='1rem'>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{(labels$ | async).endDate}}</mat-label>
+                        <input matInput type='date' formControlName="endDate">
+                    </mat-form-field>
+
+                    <mat-checkbox matInput name='working' [formControl]="isCurrentlyWorking" color="primary">
+                        {{(labels$ | async).currentlyWorking}}
+                    </mat-checkbox>
+                </div>
+
+            </div>
+
+            <div style='width: 60%;' fxLayout='column' fxLayoutGap='1rem'>
+
+                <mat-form-field class='w-full' appearance="outline">
+                    <mat-label>{{(labels$ | async).functionsPlaceholder}}</mat-label>
+                    <textarea rows='10' matInput type='text' formControlName='functions'></textarea>
+                </mat-form-field>
+
+                <div class="w-full" fxLayout='row' fxLayoutAlign='end center'>
+                    <button mat-raised-button type='submit' (click)='addLaboralInformation()' color="primary">{{(labels$
+                        | async).buttons.save}}</button>
+                </div>
+            </div>
+
+            <div class='w-full' *ngIf='laboralList?.length>0' class='laboral__functions'>
+                <div class='laboral__functions__title'>{{(labels$ | async).myInformation}}:</div>
+                <ng-container *ngFor='let laboral of laboralList;let i =index'>
+                    <div class="laboral__function">
+                        <div class="laboral__function__header">
+                            <div class="laboral__function__header__title">{{laboral.job}}</div>
+                            <div class="laboral__function__header__actions">
+                                <mat-icon [matTooltip]="(labels$ | async).buttons.remove" (click)='remove(i)'
+                                    color='warn'>highlight_off</mat-icon>
+                                <mat-icon [matTooltip]="(labels$ | async).buttons.edit" (click)='edit(i)'
+                                    color='primary'>edit</mat-icon>
+                            </div>
+                        </div>
+                        <div class="laboral__function__details">
+                            <span>{{laboral.startDate}} &nbsp; : &nbsp; {{laboral.endDate ? laboral.endDate : 'today' }}
+                            </span>
+                            <span>{{laboral.country}}&nbsp; : &nbsp; {{laboral.city}}</span>
+                        </div>
+                        <div class="laboral__function__functions">
+                            <mat-form-field class='w-full' appearance="outline">
+                                <mat-label>{{(labels$ | async).funcitions}}</mat-label>
+                                <textarea rows='10' readonly matInput type='text'
+                                    [value]='laboral.functions'></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+        </div>
+    </div>
+</form>

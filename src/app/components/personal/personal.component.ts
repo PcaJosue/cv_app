@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AlertService, AlertType } from 'src/app/services/alert.service';
+import { selectMessages, selectPersonal } from 'src/app/state/manage_language/manage_language.selects';
 import * as actions from 'src/app/state/personal_information/personal.actions'
 import * as selects from 'src/app/state/personal_information/personal.selects'
 
@@ -13,8 +14,12 @@ import * as selects from 'src/app/state/personal_information/personal.selects'
 })
 export class PersonalComponent implements OnInit {
 
+  public labels$ = this.store.select(selectPersonal);
+  public messages$ = this.store.select(selectMessages);
+  private messages;
 
-  personalForm = new FormGroup({
+
+  public personalForm = new FormGroup({
     firstName: new FormControl(null, Validators.required),
     lastName: new FormControl(null, Validators.required),
     ocupation: new FormControl(null, Validators.required),
@@ -44,6 +49,7 @@ export class PersonalComponent implements OnInit {
     this.store.select(selects.selectPersonal).subscribe(data => {
       this.personalForm.patchValue({ ...data })
     })
+    this.messages$.subscribe(data => this.messages = data)
   }
 
   complete() {
@@ -55,9 +61,8 @@ export class PersonalComponent implements OnInit {
   }
 
   formIsValid(): boolean {
-    console.log(this.personalForm);
     if (this.personalForm.invalid)
-      this.alertService.open('Please, fill all the required values', AlertType.Error);
+      this.alertService.open(this.messages.required, AlertType.Error);
     return this.personalForm.valid;
   }
 

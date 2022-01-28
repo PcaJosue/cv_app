@@ -4,8 +4,6 @@
 .layout {
     display: flex;
     justify-content: flex-start;
-    height: 90vh;
-    overflow: auto;
 }
 
 .menu {
@@ -32,6 +30,8 @@
     }
 }
 .content {
+    height: 92vh;
+    overflow: auto;
     width: 90%;
     padding-left: 0.5rem;
     background-color: $content-bg;

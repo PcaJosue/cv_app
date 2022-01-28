@@ -12,6 +12,7 @@ const routes: Routes = [
         children: [
             { path: 'personal', component: PersonalComponent },
             { path: 'laboral', component: LaboralComponent },
+            { path: 'academic', component: PersonalComponent },
         ]
     },
 ];

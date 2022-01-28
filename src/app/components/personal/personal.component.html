@@ -2,19 +2,19 @@
     <div class='item'>
 
         <div class="w-full" fxLayout='row' fxLayoutAlign='space-between center'>
-            <div class="item__title">Personal Data</div>
-            <button mat-raised-button (click)='complete()' color="primary">Next</button>
+            <div class="item__title">{{(labels$ | async).title}}</div>
+            <button mat-raised-button (click)='complete()' color="primary">{{(labels$ | async).next}}</button>
         </div>
 
         <div class='w-full' fxLayout='row' fxLayoutGap='2rem'>
 
             <mat-form-field appearance="outline">
-                <mat-label>First Name</mat-label>
+                <mat-label>{{(labels$ | async).firstName}}</mat-label>
                 <input matInput formControlName="firstName">
             </mat-form-field>
 
             <mat-form-field appearance="outline">
-                <mat-label>Last Name</mat-label>
+                <mat-label>{{(labels$ | async).lastName}}</mat-label>
                 <input matInput formControlName='lastName'>
             </mat-form-field>
 
@@ -23,17 +23,17 @@
         <div class="w-full" fxLayout='row' fxLayoutGap='2rem'>
 
             <mat-form-field appearance="outline">
-                <mat-label>Career/Ocupation</mat-label>
+                <mat-label>{{(labels$ | async).career}}</mat-label>
                 <input matInput formControlName="ocupation">
             </mat-form-field>
 
             <mat-form-field appearance="outline">
-                <mat-label>Phone</mat-label>
+                <mat-label>{{(labels$ | async).phone}}</mat-label>
                 <input matInput type='tel' formControlName="phone">
             </mat-form-field>
 
             <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
+                <mat-label>{{(labels$ | async).email}}</mat-label>
                 <input matInput type='email' formControlName="email">
             </mat-form-field>
 
@@ -41,17 +41,17 @@
 
         <div class="w-full" fxLayout='row' fxLayoutGap='2rem'>
             <mat-form-field appearance="outline">
-                <mat-label>Country</mat-label>
+                <mat-label>{{(labels$ | async).country}}</mat-label>
                 <input matInput type='text' formControlName="country">
             </mat-form-field>
 
             <mat-form-field appearance="outline">
-                <mat-label>State/Province/City</mat-label>
+                <mat-label>{{(labels$ | async).state}}</mat-label>
                 <input matInput type='text' formControlName="state">
             </mat-form-field>
         </div>
 
-        <div class="item__subtitle">Social Networks</div>
+        <div class="item__subtitle">{{(labels$ | async).socialNetworks}}</div>
 
         <div class="w-full" fxLayout='row' fxLayoutGap='2rem' class='networks' formGroupName="networks">
 
@@ -101,7 +101,7 @@
 
             <div fxLayout='row' fxLayoutAlign='start center'>
                 <mat-form-field appearance="outline">
-                    <mat-label>Other</mat-label>
+                    <mat-label>{{(labels$ | async).other}}</mat-label>
                     <input matInput type='text' formControlName="other">
                 </mat-form-field>
             </div>
