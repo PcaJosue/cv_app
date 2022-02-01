@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'; // CLI imports router
+import { AcademicComponent } from '../components/academic/academic.component';
 import { CreateCVComponent } from '../components/create-cv/create-cv.component';
 import { InitComponent } from '../components/init/init.component';
 import { LaboralComponent } from '../components/laboral/laboral.component';
@@ -12,7 +13,7 @@ const routes: Routes = [
         children: [
             { path: 'personal', component: PersonalComponent },
             { path: 'laboral', component: LaboralComponent },
-            { path: 'academic', component: PersonalComponent },
+            { path: 'academic', component: AcademicComponent },
         ]
     },
 ];

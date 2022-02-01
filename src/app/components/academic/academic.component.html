@@ -1,0 +1,94 @@
+<form [formGroup]="academicForm">
+    <div class='item'>
+
+        <div class="w-full" fxLayout='row' fxLayoutAlign='space-between center'>
+            <div class="item__title">{{(labels$ | async).title}}</div>
+            <div fxLayout='row' fxLayoutGap='1rem'>
+                <button mat-raised-button type='button' (click)='goTo("back")' color="primary">
+                    {{(labels$ | async).buttons.back}}
+                </button>
+                <button mat-raised-button type='button' (click)='goTo("next")' color="primary">
+                    {{(labels$ | async).buttons.next}}
+                </button>
+            </div>
+        </div>
+
+        <div class='w-full' class='laboral__content'>
+            <div class='w-full' fxLayout='row' fxLayoutGap='2rem'>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{(labels$ | async).school}}</mat-label>
+                    <input matInput formControlName="school" [placeholder]='(labels$ | async).placeholder.school'>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{(labels$ | async).career}}</mat-label>
+                    <input matInput formControlName='career' [placeholder]="(labels$ | async).placeholder.career">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{(labels$ | async).location}}</mat-label>
+                    <input matInput formControlName="location" [placeholder]="(labels$ | async).placeholder.location">
+                </mat-form-field>
+
+            </div>
+
+            <div class="w-full" fxLayout='row' fxLayoutGap='2rem'>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{(labels$ | async).startDate}}</mat-label>
+                    <input matInput type='date' formControlName="startDate">
+                </mat-form-field>
+
+                <div fxLyout='row' fxLayoutGap='1rem'>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>{{(labels$ | async).endDate}}</mat-label>
+                        <input matInput type='date' formControlName="endDate">
+                    </mat-form-field>
+
+                    <mat-checkbox matInput name='working' [formControl]="isCurrentlyStudying" color="primary">
+                        {{(labels$ | async).currentlyStudying}}
+                    </mat-checkbox>
+                </div>
+
+            </div>
+
+            <div style='width: 53%;' fxLayout='column' fxLayoutGap='1rem'>
+
+                <div class="w-full" fxLayout='row' fxLayoutAlign='end center'>
+                    <button mat-raised-button type='submit' color="primary" (click)='addAcademicInformation()'>
+                        {{(labels$ | async).buttons.save}}
+                    </button>
+                </div>
+            </div>
+
+            <div class='w-full' *ngIf='(academicList$ | async)?.length>0' class='academic'>
+                <div class='academic__title'>{{(labels$ | async).myInformation}}:</div>
+                <ng-container *ngFor='let academic of academicList$ | async;let i =index'>
+                    <div class="academic__item">
+                        <div class="academic__item__header">
+                            <div class="academic__item__header__title">
+                                {{academic.career}}
+                                <span class="academic__item__header__subtitle"> ({{academic.school}}) </span>
+                            </div>
+                            <div class="academic__item__header__actions">
+                                <mat-icon (click)='remove(i)' [matTooltip]="(labels$ | async).buttons.remove"
+                                    color='warn'>highlight_off</mat-icon>
+                                <mat-icon (click)='edit(academic,i)' [matTooltip]="(labels$ | async).buttons.edit"
+                                    color='primary'>edit</mat-icon>
+                            </div>
+                        </div>
+                        <div class="academic__item__details">
+                            <span>{{academic.startDate}} &nbsp; : &nbsp; {{academic.endDate ? academic.endDate :
+                                'unfinished' }}
+                            </span>
+                            <span>{{academic.location}}</span>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+        </div>
+    </div>
+</form>

@@ -9,10 +9,13 @@ import { changeLanguage } from './state/manage_language/manage_language.actions'
 export class AppComponent {
 
   public code: string = 'en';
-  constructor(private store: Store) { }
+  constructor(private store: Store) {
+    this.store.subscribe(state => {
+      console.log('state', state)
+    })
+  }
 
   modifyLanguage(code) {
-
     this.code = code.value;
     this.store.dispatch(changeLanguage({ code: code.value }))
   }

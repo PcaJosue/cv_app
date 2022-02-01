@@ -8,6 +8,7 @@ import { LaboralModel } from 'src/app/models/laboral.model';
 import { AlertService, AlertType } from 'src/app/services/alert.service';
 import * as actions from 'src/app/state/laboral_information/laboral.actions'
 import * as selects from 'src/app/state/laboral_information/laboral.selects'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-laboral',
@@ -18,8 +19,9 @@ export class LaboralComponent implements OnInit {
 
   public labels$ = this.store.select(selectLaboral);
   public messages$ = this.store.select(selectMessages);
+  public laboralList$ = this.store.select(selects.selectLaboral);
+
   readonly separatorKeysCodes = [ENTER] as const;
-  laboralList: LaboralModel[] = [];
   private messages;
 
 
@@ -32,7 +34,6 @@ export class LaboralComponent implements OnInit {
     city: new FormControl(null, Validators.required),
     startDate: new FormControl(null, [Validators.required]),
     endDate: new FormControl(null),
-    // isCurrentlyWorking: new FormControl(false),
     functions: new FormControl(null)
   });
 
@@ -42,22 +43,18 @@ export class LaboralComponent implements OnInit {
   ngOnInit(): void {
 
     this.initSubscribers();
-    this.store.select(selects.selectLaboral).subscribe(data => {
-      this.laboralList = [...data];
-    })
-
     this.messages$.subscribe(data => this.messages = data)
 
   }
 
-  complete() {
-    this.store.dispatch(actions.addLaboralInformation({ data: this.laboralList }))
-    this.route.navigate(['create', 'academic'])
+  complete(step) {
+    if (step === 'next')
+      this.route.navigate(['create', 'academic'])
+    else (step === 'back')
+    this.route.navigate(['create', 'personal'])
+
   }
 
-  isValidStep(): boolean {
-    return this.laboralList.length > 0
-  }
 
   initSubscribers() {
 
@@ -84,17 +81,18 @@ export class LaboralComponent implements OnInit {
       return;
     }
 
-    this.laboralList.push({ ...this.laboralForm.value })
+    this.store.dispatch(actions.addLaboralInformation({ data: { ...this.laboralForm.value } }))
     this.laboralForm.reset();
+    this.laboralForm.markAsUntouched();
   }
 
   remove(index) {
-    this.laboralList.splice(index, 1);
+    this.store.dispatch(actions.removeLaboralInformation({ index: index }))
   }
 
-  edit(index) {
-    this.laboralForm.patchValue({ ...this.laboralList[index] })
-    this.laboralList.splice(index, 1);
+  edit(data, index) {
+    this.store.dispatch(actions.removeLaboralInformation({ index: index }))
+    this.laboralForm.patchValue({ ...data })
     this.verifyEndDate(!this.laboralForm.get('endDate').value)
     this.isCurrentlyWorking.setValue(!this.laboralForm.get('endDate').value)
   }

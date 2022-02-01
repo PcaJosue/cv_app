@@ -33,6 +33,7 @@ export const LANGUAGE_EN = {
     laboral: {
         title: 'Laboral Information',
         buttons: {
+            back: 'Back',
             next: 'Next',
             save: 'Save',
             edit: 'Edit',
@@ -48,6 +49,30 @@ export const LANGUAGE_EN = {
         functionsPlaceholder: 'Describe your functions...',
         myInformation: 'My Laboral Information',
         functions: 'Functions'
+    },
+    academic: {
+        title: 'Academic Information',
+        buttons: {
+            back: 'Back',
+            next: 'Next',
+            save: 'Save',
+            edit: 'Edit',
+            remove: 'Remove'
+        },
+        placeholder: {
+            school: 'University of ...',
+            career: 'Career Name',
+            location: 'Ecuador'
+        },
+        school: 'School Name',
+        career: 'Career Name',
+        location: 'Location',
+        startDate: 'Start Date',
+        endDate: 'End Date',
+        currentlyStudying: 'currently Studying',
+        myInformation: 'My Academic Information',
+        unfinish: 'Unfinished'
+
     },
     messages: {
         required: 'Please, fill all required values'

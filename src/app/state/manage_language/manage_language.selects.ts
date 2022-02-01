@@ -18,3 +18,6 @@ export const selectMenu = (state: any) => {
 export const selectLaboral = (state: any) => {
     return state.manage_language.labels.laboral
 }
+export const selectAcademic = (state: any) => {
+    return state.manage_language.labels.academic
+}

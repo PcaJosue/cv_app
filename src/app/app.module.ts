@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertService } from './services/alert.service';
 import { LaboralComponent } from './components/laboral/laboral.component';
+import { AcademicComponent } from './components/academic/academic.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LaboralComponent } from './components/laboral/laboral.component';
     CreateCVComponent,
     InitComponent,
     PersonalComponent,
-    LaboralComponent
+    LaboralComponent,
+    AcademicComponent
   ],
   imports: [
     AppRoutingModule,

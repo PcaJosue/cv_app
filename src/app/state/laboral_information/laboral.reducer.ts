@@ -4,8 +4,20 @@ import * as actions from "./laboral.actions";
 
 
 /**actions */
-const onAddLaboralInformation = (state: any, { data }) => {
+const onAddLaboralInformationList = (state: any, { data }) => {
     return data;
+}
+
+const onAddLaboralInformation = (state: any, { data }) => {
+    const list = [...state];
+    list.push(data);
+    return list;
+}
+
+const onRemoveLaboralInformation = (state: any, { index }) => {
+    const list = [...state];
+    list.splice(index, 1);
+    return list;
 }
 
 const INITIAL: LaboralModel[] = []
@@ -13,7 +25,9 @@ const INITIAL: LaboralModel[] = []
 /*reducer*/
 const _laboralReducer = createReducer(
     INITIAL,
+    on(actions.addLaboralInformationList, onAddLaboralInformationList),
     on(actions.addLaboralInformation, onAddLaboralInformation),
+    on(actions.removeLaboralInformation, onRemoveLaboralInformation),
 );
 
 
