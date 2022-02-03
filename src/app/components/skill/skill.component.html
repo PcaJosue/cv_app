@@ -1,4 +1,4 @@
-<form [formGroup]="languageForm">
+<form [formGroup]="skillForm">
     <div class='item'>
 
         <div class="w-full" fxLayout='row' fxLayoutAlign='space-between center'>
@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <div class='w-full' class='language__content'>
+        <div class='w-full' class='skill__content'>
             <div class='w-full' fxLayout='row' fxLayoutGap='2rem'>
 
                 <mat-form-field appearance="outline">
@@ -32,7 +32,7 @@
                 </mat-form-field>
 
                 <button style='align-self: center;' mat-raised-button type='submit' color="primary"
-                    (click)='addLanguageInformation()'>
+                    (click)='addSkillInformation()'>
                     {{(labels$|async).buttons.save}}
                 </button>
 
@@ -41,20 +41,20 @@
 
             <mat-divider></mat-divider>
 
-            <div class='w-full' *ngIf='(languageList$ | async)?.length>0' class='language'>
-                <div class='language__title'>{{(labels$|async).myInformation}}</div>
-                <ng-container *ngFor='let language of languageList$ | async;let i =index'>
-                    <div class="language__item">
-                        <div class="language__item__header">
-                            <div class="language__item__header__title">
-                                {{language.name}}
-                                <span class="language__item__header__subtitle"> ({{language.level}}) </span>
+            <div class='w-full' *ngIf='(skillList$ | async)?.length>0' class='skill'>
+                <div class='skill__title'>{{(labels$|async).myInformation}}</div>
+                <ng-container *ngFor='let skill of skillList$ | async;let i =index'>
+                    <div class="skill__item">
+                        <div class="skill__item__header">
+                            <div class="skill__item__header__title">
+                                {{skill.name}}
+                                <span class="skill__item__header__subtitle"> ({{skill.level}}) </span>
                             </div>
-                            <div class="language__item__header__actions">
+                            <div class="skill__item__header__actions">
                                 <mat-icon (click)='remove(i)' [matTooltip]="(labels$|async).buttons.remove"
                                     color='warn'>highlight_off
                                 </mat-icon>
-                                <mat-icon (click)='edit(language,i)' [matTooltip]="(labels$|async).buttons.edit"
+                                <mat-icon (click)='edit(skill,i)' [matTooltip]="(labels$|async).buttons.edit"
                                     color='primary'>edit
                                 </mat-icon>
                             </div>

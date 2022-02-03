@@ -6,6 +6,7 @@ import { InitComponent } from '../components/init/init.component';
 import { LaboralComponent } from '../components/laboral/laboral.component';
 import { LanguageComponent } from '../components/language/language.component';
 import { PersonalComponent } from '../components/personal/personal.component';
+import { SkillComponent } from '../components/skill/skill.component';
 
 const routes: Routes = [
     { path: '', component: InitComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
             { path: 'laboral', component: LaboralComponent },
             { path: 'academic', component: AcademicComponent },
             { path: 'language', component: LanguageComponent },
+            { path: 'skill', component: SkillComponent },
         ]
     },
 ];

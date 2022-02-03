@@ -25,3 +25,7 @@ export const selectAcademic = (state: any) => {
 export const selectLanguage = (state: any) => {
     return state.manage_language.labels.language
 }
+
+export const selectSkill = (state: any) => {
+    return state.manage_language.labels.skill
+}

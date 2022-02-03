@@ -88,6 +88,20 @@ export const LANGUAGE_EN = {
         level: 'Level',
         myInformation: 'My Languages',
     },
+    skill: {
+        levels: ['Novice', 'Advanced Beginner', 'Competent', 'Proficient', 'Expert'],
+        title: 'Skill Information',
+        buttons: {
+            back: 'Back',
+            next: 'Next',
+            save: 'Add',
+            edit: 'Edit',
+            remove: 'Remove'
+        },
+        name: 'Skill Name',
+        level: 'Level',
+        myInformation: 'My Skills',
+    },
     messages: {
         required: 'Please, fill all required values'
     }

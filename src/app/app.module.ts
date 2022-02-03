@@ -16,6 +16,7 @@ import { AlertService } from './services/alert.service';
 import { LaboralComponent } from './components/laboral/laboral.component';
 import { AcademicComponent } from './components/academic/academic.component';
 import { LanguageComponent } from './components/language/language.component';
+import { SkillComponent } from './components/skill/skill.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LanguageComponent } from './components/language/language.component';
     PersonalComponent,
     LaboralComponent,
     AcademicComponent,
-    LanguageComponent
+    LanguageComponent,
+    SkillComponent
   ],
   imports: [
     AppRoutingModule,
