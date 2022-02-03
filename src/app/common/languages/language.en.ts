@@ -74,6 +74,20 @@ export const LANGUAGE_EN = {
         unfinish: 'Unfinished'
 
     },
+    language: {
+        levels: ['Beginner', 'Elementary', 'Intermediate', 'Upper Intermediate', 'Advanced', 'Proficient', 'Native'],
+        title: 'Language Information',
+        buttons: {
+            back: 'Back',
+            next: 'Next',
+            save: 'Add',
+            edit: 'Edit',
+            remove: 'Remove'
+        },
+        name: 'Language Name',
+        level: 'Level',
+        myInformation: 'My Languages',
+    },
     messages: {
         required: 'Please, fill all required values'
     }

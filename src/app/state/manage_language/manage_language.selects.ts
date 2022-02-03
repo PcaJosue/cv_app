@@ -21,3 +21,7 @@ export const selectLaboral = (state: any) => {
 export const selectAcademic = (state: any) => {
     return state.manage_language.labels.academic
 }
+
+export const selectLanguage = (state: any) => {
+    return state.manage_language.labels.language
+}

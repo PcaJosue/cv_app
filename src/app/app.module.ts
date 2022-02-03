@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertService } from './services/alert.service';
 import { LaboralComponent } from './components/laboral/laboral.component';
 import { AcademicComponent } from './components/academic/academic.component';
+import { LanguageComponent } from './components/language/language.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AcademicComponent } from './components/academic/academic.component';
     InitComponent,
     PersonalComponent,
     LaboralComponent,
-    AcademicComponent
+    AcademicComponent,
+    LanguageComponent
   ],
   imports: [
     AppRoutingModule,

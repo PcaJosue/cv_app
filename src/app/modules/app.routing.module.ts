@@ -4,6 +4,7 @@ import { AcademicComponent } from '../components/academic/academic.component';
 import { CreateCVComponent } from '../components/create-cv/create-cv.component';
 import { InitComponent } from '../components/init/init.component';
 import { LaboralComponent } from '../components/laboral/laboral.component';
+import { LanguageComponent } from '../components/language/language.component';
 import { PersonalComponent } from '../components/personal/personal.component';
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
             { path: 'personal', component: PersonalComponent },
             { path: 'laboral', component: LaboralComponent },
             { path: 'academic', component: AcademicComponent },
+            { path: 'language', component: LanguageComponent },
         ]
     },
 ];

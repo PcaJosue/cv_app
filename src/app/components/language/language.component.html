@@ -1,0 +1,68 @@
+<form [formGroup]="languageForm">
+    <div class='item'>
+
+        <div class="w-full" fxLayout='row' fxLayoutAlign='space-between center'>
+            <div class="item__title">{{(labels$|async).title}}</div>
+            <div fxLayout='row' fxLayoutGap='1rem'>
+                <button mat-raised-button type='button' (click)='goTo("back")' color="primary">
+                    {{(labels$|async).buttons.back}}
+                </button>
+                <button mat-raised-button type='button' (click)='goTo("next")' color="primary">
+                    {{(labels$|async).buttons.next}}
+                </button>
+            </div>
+        </div>
+
+        <div class='w-full' class='language__content'>
+            <div class='w-full' fxLayout='row' fxLayoutGap='2rem'>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{(labels$|async).name}}</mat-label>
+                    <input matInput formControlName="name" placeholder='English'>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="outline">
+                    <mat-label>{{(labels$|async).level}}</mat-label>
+                    <select matNativeControl formControlName='level'>
+                        <option *ngFor="let level of (labels$ | async ).levels">
+                            {{level}}
+                        </option>
+                    </select>
+                </mat-form-field>
+
+                <button style='align-self: center;' mat-raised-button type='submit' color="primary"
+                    (click)='addLanguageInformation()'>
+                    {{(labels$|async).save}}
+                </button>
+
+
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class='w-full' *ngIf='(languageList$ | async)?.length>0' class='language'>
+                <div class='language__title'>{{(labels$|async).myInformation}}</div>
+                <ng-container *ngFor='let language of languageList$ | async;let i =index'>
+                    <div class="language__item">
+                        <div class="language__item__header">
+                            <div class="language__item__header__title">
+                                {{language.name}}
+                                <span class="language__item__header__subtitle"> ({{language.level}}) </span>
+                            </div>
+                            <div class="language__item__header__actions">
+                                <mat-icon (click)='remove(i)' [matTooltip]="(labels$|async).buttons.remove"
+                                    color='warn'>highlight_off
+                                </mat-icon>
+                                <mat-icon (click)='edit(language,i)' [matTooltip]="(labels$|async).buttons.edit"
+                                    color='primary'>edit
+                                </mat-icon>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+
+        </div>
+    </div>
+</form>
