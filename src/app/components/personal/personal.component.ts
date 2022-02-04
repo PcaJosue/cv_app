@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { debounceTime } from 'rxjs/operators';
 import { AlertService, AlertType } from 'src/app/services/alert.service';
 import { selectButtons, selectMessages, selectPersonal } from 'src/app/state/manage_language/manage_language.selects';
 import * as actions from 'src/app/state/personal_information/personal.actions'
@@ -47,9 +48,11 @@ export class PersonalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.store.select(selects.selectPersonal).subscribe(data => {
       this.personalForm.patchValue({ ...data })
     })
+
     this.messages$.subscribe(data => this.messages = data)
   }
 

@@ -7,6 +7,7 @@ import { skillReducer } from "./skill_information/skill.reducer";
 import { achievementReducer } from "./achievement_information/achievement.reducer";
 import { certificationReducer } from "./certification_information/certification.reducer";
 import { interestReducer } from "./interest_information/interest.reducer";
+import { objectiveReducer } from "./objective_information/objective.reducer";
 
 export const reducers = {
     personal: personalReducer,
@@ -17,5 +18,6 @@ export const reducers = {
     skill: skillReducer,
     achievement: achievementReducer,
     certification: certificationReducer,
-    interest: interestReducer
+    interest: interestReducer,
+    objective: objectiveReducer
 }

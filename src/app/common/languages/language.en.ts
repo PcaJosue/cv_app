@@ -103,6 +103,10 @@ export const LANGUAGE_EN = {
         name: 'Name',
         myInformation: 'My Interests',
     },
+    objective: {
+        title: 'Objective',
+        name: 'Objective',
+    },
     messages: {
         required: 'Please, fill all required values'
     },

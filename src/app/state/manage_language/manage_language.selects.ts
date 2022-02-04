@@ -45,3 +45,7 @@ export const selectCertification = (state: any) => {
 export const selectInterest = (state: any) => {
     return state.manage_language.labels.interest
 }
+
+export const selectObjective = (state: any) => {
+    return state.manage_language.labels.objective
+}
