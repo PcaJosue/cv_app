@@ -29,3 +29,11 @@ export const selectLanguage = (state: any) => {
 export const selectSkill = (state: any) => {
     return state.manage_language.labels.skill
 }
+
+export const selectAchievement = (state: any) => {
+    return state.manage_language.labels.achievement
+}
+
+export const selectCertification = (state: any) => {
+    return state.manage_language.labels.certification
+}

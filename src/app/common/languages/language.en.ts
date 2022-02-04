@@ -102,6 +102,42 @@ export const LANGUAGE_EN = {
         level: 'Level',
         myInformation: 'My Skills',
     },
+    achievement: {
+        title: 'Achievements Information',
+        buttons: {
+            back: 'Back',
+            next: 'Next',
+            save: 'Add',
+            edit: 'Edit',
+            remove: 'Remove'
+        },
+        placeholder: {
+            name: 'Optimization of the annual budget.',
+            description: 'I was able to ....'
+        },
+        name: 'Name',
+        date: 'Date',
+        description: 'Description',
+        myInformation: 'My Achievements',
+    },
+    certification: {
+        title: 'Certification Information',
+        buttons: {
+            back: 'Back',
+            next: 'Next',
+            save: 'Add',
+            edit: 'Edit',
+            remove: 'Remove'
+        },
+        placeholder: {
+            name: 'PPM',
+            school: 'University of ...'
+        },
+        name: 'Name',
+        date: 'Date',
+        school: 'School',
+        myInformation: 'My Certifications',
+    },
     messages: {
         required: 'Please, fill all required values'
     }

@@ -17,6 +17,8 @@ import { LaboralComponent } from './components/laboral/laboral.component';
 import { AcademicComponent } from './components/academic/academic.component';
 import { LanguageComponent } from './components/language/language.component';
 import { SkillComponent } from './components/skill/skill.component';
+import { AchievementComponent } from './components/achievement/achievement.component';
+import { CertificationComponent } from './components/certification/certification.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { SkillComponent } from './components/skill/skill.component';
     LaboralComponent,
     AcademicComponent,
     LanguageComponent,
-    SkillComponent
+    SkillComponent,
+    AchievementComponent,
+    CertificationComponent
   ],
   imports: [
     AppRoutingModule,

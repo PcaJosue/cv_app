@@ -4,6 +4,8 @@ import { laboralReducer } from "./laboral_information/laboral.reducer";
 import { academicReducer } from "./academic_information/academic.reducer";
 import { languageReducer } from "./language_information/language.reducer";
 import { skillReducer } from "./skill_information/skill.reducer";
+import { achievementReducer } from "./achievement_information/achievement.reducer";
+import { certificationReducer } from "./certification_information/certification.reducer";
 
 export const reducers = {
     personal: personalReducer,
@@ -11,5 +13,7 @@ export const reducers = {
     laboral: laboralReducer,
     academic: academicReducer,
     language: languageReducer,
-    skill: skillReducer
+    skill: skillReducer,
+    achievement: achievementReducer,
+    certification: certificationReducer
 }
