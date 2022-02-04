@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AlertService, AlertType } from 'src/app/services/alert.service';
-import { selectAcademic, selectMessages } from 'src/app/state/manage_language/manage_language.selects';
+import { selectAcademic, selectButtons, selectMessages } from 'src/app/state/manage_language/manage_language.selects';
 import * as selects from 'src/app/state/academic_information/academic.selects';
 import * as actions from 'src/app/state/academic_information/academic.actions';
 
@@ -20,6 +20,7 @@ export class AcademicComponent implements OnInit {
   public messages$ = this.store.select(selectMessages);
   private messages;
   public academicList$ = this.store.select(selects.selectAcademic);
+  public buttons$ = this.store.select(selectButtons);
 
 
 

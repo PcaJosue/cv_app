@@ -1,4 +1,4 @@
-<form [formGroup]="achievementForm">
+<form [formGroup]="interestForm">
     <div class='item'>
 
         <div class="w-full" fxLayout='row' fxLayoutAlign='space-between center'>
@@ -21,19 +21,8 @@
                     <input matInput formControlName="name" [placeholder]='(labels$ | async).placeholder.name'>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline">
-                    <mat-label>{{(labels$ | async).date}}</mat-label>
-                    <input matInput formControlName='date' type="date">
-                </mat-form-field>
-
-                <mat-form-field appearance="outline">
-                    <mat-label>{{(labels$ | async).description}}</mat-label>
-                    <input matInput formControlName="description"
-                        [placeholder]="(labels$ | async).placeholder.description">
-                </mat-form-field>
-
                 <button style="align-self:center" mat-raised-button type='submit' color="primary"
-                    (click)='addAchievementInformation()'>
+                    (click)='addInterestInformation()'>
                     {{(buttons$ | async).save}}
                 </button>
 
@@ -41,24 +30,20 @@
 
             <mat-divider></mat-divider>
 
-            <div class='w-full' *ngIf='(achievementList$ | async)?.length>0' class='achievement'>
-                <div class='achievement__title'>{{(labels$ | async).myInformation}}:</div>
-                <ng-container *ngFor='let achievement of achievementList$ | async;let i =index'>
-                    <div class="achievement__item">
-                        <div class="achievement__item__header">
-                            <div class="achievement__item__header__title">
-                                {{achievement.name}}
-                                <span class="achievement__item__header__subtitle"> ({{achievement.date}}) </span>
+            <div class='w-full' *ngIf='(interestList$ | async)?.length>0' class='interest'>
+                <div class='interest__title'>{{(labels$ | async).myInformation}}:</div>
+                <ng-container *ngFor='let interest of interestList$ | async;let i =index'>
+                    <div class="interest__item">
+                        <div class="interest__item__header">
+                            <div class="interest__item__header__title">
+                                {{interest.name}}
                             </div>
-                            <div class="achievement__item__header__actions">
+                            <div class="interest__item__header__actions">
                                 <mat-icon (click)='remove(i)' [matTooltip]="(buttons$ | async).remove" color='warn'>
                                     highlight_off</mat-icon>
-                                <mat-icon (click)='edit(achievement,i)' [matTooltip]="(buttons$ | async).edit"
+                                <mat-icon (click)='edit(interest,i)' [matTooltip]="(buttons$ | async).edit"
                                     color='primary'>edit</mat-icon>
                             </div>
-                        </div>
-                        <div class="achievement__item__details">
-                            <span>{{achievement.description}}</span>
                         </div>
                     </div>
                 </ng-container>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { selectLaboral, selectMessages, selectPersonal } from 'src/app/state/manage_language/manage_language.selects';
+import { selectButtons, selectLaboral, selectMessages, selectPersonal } from 'src/app/state/manage_language/manage_language.selects';
 import { ENTER } from '@angular/cdk/keycodes';
 import { LaboralModel } from 'src/app/models/laboral.model';
 import { AlertService, AlertType } from 'src/app/services/alert.service';
@@ -20,6 +20,7 @@ export class LaboralComponent implements OnInit {
   public labels$ = this.store.select(selectLaboral);
   public messages$ = this.store.select(selectMessages);
   public laboralList$ = this.store.select(selects.selectLaboral);
+  public buttons$ = this.store.select(selectButtons);
 
   readonly separatorKeysCodes = [ENTER] as const;
   private messages;

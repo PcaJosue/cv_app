@@ -3,7 +3,7 @@
 
         <div class="w-full" fxLayout='row' fxLayoutAlign='space-between center'>
             <div class="item__title">{{(labels$ | async).title}}</div>
-            <button mat-raised-button (click)='complete()' color="primary">{{(labels$ | async).next}}</button>
+            <button mat-raised-button (click)='complete()' color="primary">{{(buttons$ | async).next}}</button>
         </div>
 
         <div class='w-full' fxLayout='row' fxLayoutGap='2rem'>

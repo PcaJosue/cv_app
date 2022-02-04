@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { selectCertification, selectMessages } from 'src/app/state/manage_language/manage_language.selects';
+import { selectButtons, selectCertification, selectMessages } from 'src/app/state/manage_language/manage_language.selects';
 import * as selects from 'src/app/state/certification_information/certification.selects'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,6 +18,7 @@ export class CertificationComponent implements OnInit {
   public messages$ = this.store.select(selectMessages);
   private messages;
   public certificationList$ = this.store.select(selects.selectCertification);
+  public buttons$ = this.store.select(selectButtons);
 
 
 

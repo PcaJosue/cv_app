@@ -20,7 +20,6 @@ export const LANGUAGE_EN = {
     personal: {
         title: 'Personal Data',
         networks: 'Social Networks',
-        next: 'Next',
         firstName: 'First Name',
         lastName: 'Last Name',
         career: 'Career/Ocupation',
@@ -32,13 +31,6 @@ export const LANGUAGE_EN = {
     },
     laboral: {
         title: 'Laboral Information',
-        buttons: {
-            back: 'Back',
-            next: 'Next',
-            save: 'Save',
-            edit: 'Edit',
-            remove: 'Remove'
-        },
         job: 'Job Title',
         employer: 'Employer',
         country: 'Country',
@@ -52,13 +44,6 @@ export const LANGUAGE_EN = {
     },
     academic: {
         title: 'Academic Information',
-        buttons: {
-            back: 'Back',
-            next: 'Next',
-            save: 'Save',
-            edit: 'Edit',
-            remove: 'Remove'
-        },
         placeholder: {
             school: 'University of ...',
             career: 'Career Name',
@@ -77,13 +62,6 @@ export const LANGUAGE_EN = {
     language: {
         levels: ['Beginner', 'Elementary', 'Intermediate', 'Upper Intermediate', 'Advanced', 'Proficient', 'Native'],
         title: 'Language Information',
-        buttons: {
-            back: 'Back',
-            next: 'Next',
-            save: 'Add',
-            edit: 'Edit',
-            remove: 'Remove'
-        },
         name: 'Language Name',
         level: 'Level',
         myInformation: 'My Languages',
@@ -91,26 +69,12 @@ export const LANGUAGE_EN = {
     skill: {
         levels: ['Novice', 'Advanced Beginner', 'Competent', 'Proficient', 'Expert'],
         title: 'Skill Information',
-        buttons: {
-            back: 'Back',
-            next: 'Next',
-            save: 'Add',
-            edit: 'Edit',
-            remove: 'Remove'
-        },
         name: 'Skill Name',
         level: 'Level',
         myInformation: 'My Skills',
     },
     achievement: {
         title: 'Achievements Information',
-        buttons: {
-            back: 'Back',
-            next: 'Next',
-            save: 'Add',
-            edit: 'Edit',
-            remove: 'Remove'
-        },
         placeholder: {
             name: 'Optimization of the annual budget.',
             description: 'I was able to ....'
@@ -122,13 +86,6 @@ export const LANGUAGE_EN = {
     },
     certification: {
         title: 'Certification Information',
-        buttons: {
-            back: 'Back',
-            next: 'Next',
-            save: 'Add',
-            edit: 'Edit',
-            remove: 'Remove'
-        },
         placeholder: {
             name: 'PPM',
             school: 'University of ...'
@@ -138,9 +95,24 @@ export const LANGUAGE_EN = {
         school: 'School',
         myInformation: 'My Certifications',
     },
+    interest: {
+        title: 'Interest Information',
+        placeholder: {
+            name: 'Environment',
+        },
+        name: 'Name',
+        myInformation: 'My Interests',
+    },
     messages: {
         required: 'Please, fill all required values'
-    }
+    },
+    buttons: {
+        back: 'Back',
+        next: 'Next',
+        save: 'Add',
+        edit: 'Edit',
+        remove: 'Remove'
+    },
 
 
 }

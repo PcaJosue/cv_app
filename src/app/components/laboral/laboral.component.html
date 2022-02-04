@@ -5,10 +5,10 @@
             <div class="item__title">{{(labels$ | async).title}}</div>
             <div fxLayout='row' fxLayoutGap='1rem'>
                 <button mat-stroked-button type='button' (click)='complete("back")' color="primary">
-                    {{(labels$ | async).buttons.back}}
+                    {{(buttons$ | async).back}}
                 </button>
                 <button mat-raised-button type='button' (click)='complete("next")' color="primary">
-                    {{(labels$ | async).buttons.next}}
+                    {{(buttons$ | async).next}}
                 </button>
             </div>
         </div>
@@ -67,8 +67,8 @@
                 </mat-form-field>
 
                 <div class="w-full" fxLayout='row' fxLayoutAlign='end center'>
-                    <button mat-raised-button type='submit' (click)='addLaboralInformation()' color="primary">{{(labels$
-                        | async).buttons.save}}</button>
+                    <button mat-raised-button type='submit' (click)='addLaboralInformation()' color="primary">
+                        {{(buttons$ | async).save}}</button>
                 </div>
             </div>
 
@@ -79,9 +79,9 @@
                         <div class="laboral__function__header">
                             <div class="laboral__function__header__title">{{laboral.job}}</div>
                             <div class="laboral__function__header__actions">
-                                <mat-icon [matTooltip]="(labels$ | async).buttons.remove" (click)='remove(i)'
-                                    color='warn'>highlight_off</mat-icon>
-                                <mat-icon [matTooltip]="(labels$ | async).buttons.edit" (click)='edit(laboral,i)'
+                                <mat-icon [matTooltip]="(buttons$ | async).remove" (click)='remove(i)' color='warn'>
+                                    highlight_off</mat-icon>
+                                <mat-icon [matTooltip]="(buttons$ | async).edit" (click)='edit(laboral,i)'
                                     color='primary'>edit</mat-icon>
                             </div>
                         </div>

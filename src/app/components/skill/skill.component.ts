@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AlertService, AlertType } from 'src/app/services/alert.service';
-import { selectMessages, selectSkill } from 'src/app/state/manage_language/manage_language.selects';
+import { selectButtons, selectMessages, selectSkill } from 'src/app/state/manage_language/manage_language.selects';
 import * as selects from 'src/app/state/skill_information/skill.selects'
 import * as actions from 'src/app/state/skill_information/skill.actions'
 
@@ -19,6 +19,7 @@ export class SkillComponent implements OnInit {
   private messages;
   public skillList$ = this.store.select(selects.selectSkill);
   public labels$ = this.store.select(selectSkill);
+  public buttons$ = this.store.select(selectButtons);
 
 
   public skillForm: FormGroup = new FormGroup({

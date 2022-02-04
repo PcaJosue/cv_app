@@ -5,10 +5,10 @@
             <div class="item__title">{{(labels$ | async).title}}</div>
             <div fxLayout='row' fxLayoutGap='1rem'>
                 <button mat-raised-button type='button' (click)='goTo("back")' color="primary">
-                    {{(labels$ | async).buttons.back}}
+                    {{(buttons$ | async).back}}
                 </button>
                 <button mat-raised-button type='button' (click)='goTo("next")' color="primary">
-                    {{(labels$ | async).buttons.next}}
+                    {{(buttons$ | async).next}}
                 </button>
             </div>
         </div>
@@ -33,7 +33,7 @@
 
                 <button style="align-self:center" mat-raised-button type='submit' color="primary"
                     (click)='addCertificationInformation()'>
-                    {{(labels$ | async).buttons.save}}
+                    {{(buttons$ | async).save}}
                 </button>
 
             </div>
@@ -50,9 +50,9 @@
                                 <span class="certification__item__header__subtitle"> ({{certification.date}}) </span>
                             </div>
                             <div class="certification__item__header__actions">
-                                <mat-icon (click)='remove(i)' [matTooltip]="(labels$ | async).buttons.remove"
-                                    color='warn'>highlight_off</mat-icon>
-                                <mat-icon (click)='edit(certification,i)' [matTooltip]="(labels$ | async).buttons.edit"
+                                <mat-icon (click)='remove(i)' [matTooltip]="(buttons$ | async).remove" color='warn'>
+                                    highlight_off</mat-icon>
+                                <mat-icon (click)='edit(certification,i)' [matTooltip]="(buttons$ | async).edit"
                                     color='primary'>edit</mat-icon>
                             </div>
                         </div>

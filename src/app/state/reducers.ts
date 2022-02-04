@@ -6,6 +6,7 @@ import { languageReducer } from "./language_information/language.reducer";
 import { skillReducer } from "./skill_information/skill.reducer";
 import { achievementReducer } from "./achievement_information/achievement.reducer";
 import { certificationReducer } from "./certification_information/certification.reducer";
+import { interestReducer } from "./interest_information/interest.reducer";
 
 export const reducers = {
     personal: personalReducer,
@@ -15,5 +16,6 @@ export const reducers = {
     language: languageReducer,
     skill: skillReducer,
     achievement: achievementReducer,
-    certification: certificationReducer
+    certification: certificationReducer,
+    interest: interestReducer
 }

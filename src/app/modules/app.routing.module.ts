@@ -5,6 +5,7 @@ import { AchievementComponent } from '../components/achievement/achievement.comp
 import { CertificationComponent } from '../components/certification/certification.component';
 import { CreateCVComponent } from '../components/create-cv/create-cv.component';
 import { InitComponent } from '../components/init/init.component';
+import { InterestComponent } from '../components/interest/interest.component';
 import { LaboralComponent } from '../components/laboral/laboral.component';
 import { LanguageComponent } from '../components/language/language.component';
 import { PersonalComponent } from '../components/personal/personal.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
             { path: 'skill', component: SkillComponent },
             { path: 'achievement', component: AchievementComponent },
             { path: 'certification', component: CertificationComponent },
+            { path: 'interest', component: InterestComponent },
         ]
     },
     { path: '**', redirectTo: '' }

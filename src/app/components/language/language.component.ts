@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AlertService, AlertType } from 'src/app/services/alert.service';
-import { selectLanguage, selectMessages } from 'src/app/state/manage_language/manage_language.selects';
+import { selectButtons, selectLanguage, selectMessages } from 'src/app/state/manage_language/manage_language.selects';
 import * as selects from 'src/app/state/language_information/language.selects'
 import * as actions from 'src/app/state/language_information/language.actions'
 
@@ -19,6 +19,7 @@ export class LanguageComponent implements OnInit {
   private messages;
   public languageList$ = this.store.select(selects.selectLanguage);
   public labels$ = this.store.select(selectLanguage);
+  public buttons$ = this.store.select(selectButtons);
 
 
   public languageForm: FormGroup = new FormGroup({

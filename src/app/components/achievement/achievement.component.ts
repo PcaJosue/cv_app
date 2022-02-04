@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { selectAchievement, selectMessages } from 'src/app/state/manage_language/manage_language.selects';
+import { selectAchievement, selectButtons, selectMessages } from 'src/app/state/manage_language/manage_language.selects';
 import * as selects from 'src/app/state/achievement_information/achievement.selects'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -18,6 +18,7 @@ export class AchievementComponent implements OnInit {
   public messages$ = this.store.select(selectMessages);
   private messages;
   public achievementList$ = this.store.select(selects.selectAchievement);
+  public buttons$ = this.store.select(selectButtons);
 
 
 
