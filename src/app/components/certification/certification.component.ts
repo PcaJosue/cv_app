@@ -37,8 +37,8 @@ export class CertificationComponent implements OnInit {
 
 
   goTo(step) {
-    if (step === 'next') this.route.navigate(['create', 'interest'])
-    else this.route.navigate(['create', 'achievement'])
+    if (step === 'next') this.route.navigate(['create', 'interest']);
+    else this.route.navigate(['create', 'achievement']);
   }
 
 

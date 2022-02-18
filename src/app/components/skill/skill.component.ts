@@ -34,8 +34,8 @@ export class SkillComponent implements OnInit {
   }
 
   goTo(step) {
-    if (step === 'next') this.route.navigate(['create', 'language'])
-    else this.route.navigate(['create', 'achievement'])
+    if (step === 'next') this.route.navigate(['create', 'achievement']);
+    else this.route.navigate(['create', 'language']);
   }
 
 

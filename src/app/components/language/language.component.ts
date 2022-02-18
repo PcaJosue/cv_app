@@ -34,8 +34,8 @@ export class LanguageComponent implements OnInit {
   }
 
   goTo(step) {
-    if (step === 'next') this.route.navigate(['create', 'skill'])
-    else this.route.navigate(['create', 'academic'])
+    if (step === 'next') this.route.navigate(['create', 'skill']);
+    else this.route.navigate(['create', 'academic']);
   }
 
 

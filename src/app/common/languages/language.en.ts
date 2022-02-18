@@ -2,7 +2,7 @@ export const LANGUAGE_EN = {
 
     main: {
         create: 'Create CV',
-        upload: 'upload Data',
+        upload: 'Upload Data',
         title: 'Curriculum Vitae App'
     },
     menu: {
@@ -13,9 +13,10 @@ export const LANGUAGE_EN = {
         languages: 'Languages',
         skills: 'Skills',
         achievements: 'Achievements',
-        certifications: 'Certifications',
+        certifications: 'Certifications/Courses',
         interests: 'Interests',
-        objective: 'Objective'
+        objective: 'Objective',
+        review: 'Review'
     },
     personal: {
         title: 'Personal Data',
@@ -27,7 +28,7 @@ export const LANGUAGE_EN = {
         email: 'Email',
         country: 'Country',
         state: 'State/Province/City',
-        other: 'Other'
+        other: 'Web Site'
     },
     laboral: {
         title: 'Laboral Information',
@@ -85,7 +86,7 @@ export const LANGUAGE_EN = {
         myInformation: 'My Achievements',
     },
     certification: {
-        title: 'Certification Information',
+        title: 'Certification and Courses Information',
         placeholder: {
             name: 'PPM',
             school: 'University of ...'
@@ -93,7 +94,7 @@ export const LANGUAGE_EN = {
         name: 'Name',
         date: 'Date',
         school: 'School',
-        myInformation: 'My Certifications',
+        myInformation: 'My Certifications/Courses',
     },
     interest: {
         title: 'Interest Information',
@@ -110,13 +111,34 @@ export const LANGUAGE_EN = {
     messages: {
         required: 'Please, fill all required values'
     },
+    review: {
+        preview: 'Preview',
+        download: 'Download PDF',
+        export: 'Export Data',
+        title: 'Review CV'
+    },
     buttons: {
         back: 'Back',
         next: 'Next',
-        save: 'Add',
+        save: 'Save',
         edit: 'Edit',
+        add: 'Add',
         remove: 'Remove'
     },
+    formats: ['international', 'cool'],
+    pdf: {
+        international: {
+            title: 'Curriculum Vitae',
+            laboral: 'Laboral Information',
+            academic: 'Academic Information',
+            skill: 'Skills',
+            language: 'Languages information',
+            achievement: 'Achievements',
+            certification: 'Certifications / Courses',
+            interest: 'Interests'
+
+        }
+    }
 
 
 }

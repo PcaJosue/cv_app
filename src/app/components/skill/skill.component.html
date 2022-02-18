@@ -4,7 +4,7 @@
         <div class="w-full" fxLayout='row' fxLayoutAlign='space-between center'>
             <div class="item__title">{{(labels$|async).title}}</div>
             <div fxLayout='row' fxLayoutGap='1rem'>
-                <button mat-raised-button type='button' (click)='goTo("back")' color="primary">
+                <button mat-stroked-button type='button' (click)='goTo("back")' color="primary">
                     {{(buttons$|async).back}}
                 </button>
                 <button mat-raised-button type='button' (click)='goTo("next")' color="primary">
@@ -24,11 +24,11 @@
 
                 <mat-form-field appearance="outline">
                     <mat-label>{{(labels$|async).level}}</mat-label>
-                    <select matNativeControl formControlName='level'>
-                        <option *ngFor="let level of (labels$ | async ).levels">
+                    <mat-select matNativeControl formControlName='level'>
+                        <mat-option *ngFor="let level of (labels$ | async ).levels">
                             {{level}}
-                        </option>
-                    </select>
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
 
                 <button style='align-self: center;' mat-raised-button type='submit' color="primary"

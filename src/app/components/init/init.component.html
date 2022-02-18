@@ -3,8 +3,11 @@
         <mat-icon class='item__icon'>add_circle_outline</mat-icon>
         <div class='item__description'>{{(labels$ | async).create}}</div>
     </mat-card>
-    <mat-card (click)='router.navigate(["upload"])' class='item'>
-        <mat-icon class='item__icon'>upload</mat-icon>
-        <div class='item__description'>{{(labels$ | async).upload}}</div>
+    <mat-card class='item'>
+        <label for="upload-cv" class='item-label'>
+            <mat-icon class='item__icon'>upload</mat-icon>
+            <div class='item__description'>{{(labels$ | async).upload}}</div>
+        </label>
     </mat-card>
+    <input id="upload-cv" (change)="onUploadFileChanged($event)" type="file" style="display: none;">
 </div>

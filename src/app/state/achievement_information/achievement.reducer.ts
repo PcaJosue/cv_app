@@ -1,23 +1,24 @@
 import { createReducer, on } from "@ngrx/store";
+import { sortArray } from "src/app/common/helpers/helpers";
 import { AchievementModel } from "src/app/models/achievement.model";
 import * as actions from "./achievement.actions";
 
 
 /**actions */
 const onAddAchievementInformationList = (state: any, { data }) => {
-    return data;
+    return sortArray([...data], 'date');
 }
 
 const onAddAchievementInformation = (state: any, { data }) => {
     const list = [...state];
     list.push(data);
-    return list;
+    return sortArray(list, 'date');
 }
 
 const onRemoveAchievementInformation = (state: any, { index }) => {
     const list = [...state];
     list.splice(index, 1);
-    return list;
+    return sortArray(list, 'date');;
 }
 
 const INITIAL: AchievementModel[] = []

@@ -1,7 +1,7 @@
-export const sortArray = (array) => {
+export const sortArray = (array, key) => {
     return array.sort((a, b) => {
-        var d1 = new Date(a.startDate);
-        var d2 = new Date(b.startDate);
-        return +d1 - +d2;
+        var d1 = new Date(a[key]);
+        var d2 = new Date(b[key]);
+        return +d2 - +d1;
     });
 }

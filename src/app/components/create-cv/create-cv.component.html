@@ -2,15 +2,36 @@
     <div class="menu">
         <div class='menu__title'>{{(labels$ |async).title}}</div>
         <mat-selection-list class='menu__list' [multiple]="false">
-            <mat-list-option>1.{{(labels$ |async).personal}}</mat-list-option>
-            <mat-list-option>2.{{(labels$ |async).laboral}}</mat-list-option>
-            <mat-list-option>3.{{(labels$ |async).academic}}</mat-list-option>
-            <mat-list-option>4.{{(labels$ |async).languages}}</mat-list-option>
-            <mat-list-option>5.{{(labels$ |async).skills}}</mat-list-option>
-            <mat-list-option>6.{{(labels$ |async).achievements}}</mat-list-option>
-            <mat-list-option>7.{{(labels$ |async).certifications}}</mat-list-option>
-            <mat-list-option>8.{{(labels$ |async).interests}}</mat-list-option>
-            <mat-list-option>9.{{(labels$ |async).objective}}</mat-list-option>
+            <mat-list-option routerLinkActive="active-link" routerLinkActive [routerLink]="['personal']">
+                1.{{(labels$ |async).personal}}
+            </mat-list-option>
+            <mat-list-option routerLinkActive="active-link" [routerLink]="['laboral']">
+                2.{{(labels$|async).laboral}}
+            </mat-list-option>
+            <mat-list-option routerLinkActive="active-link" [routerLink]="['academic']">
+                3.{{(labels$ |async).academic}}
+            </mat-list-option>
+            <mat-list-option routerLinkActive="active-link" [routerLink]="['language']">
+                4.{{(labels$ |async).languages}}
+            </mat-list-option>
+            <mat-list-option routerLinkActive="active-link" [routerLink]="['skill']">
+                5.{{(labels$ |async).skills}}
+            </mat-list-option>
+            <mat-list-option routerLinkActive="active-link" [routerLink]="['achievement']">
+                6.{{(labels$ |async).achievements}}
+            </mat-list-option>
+            <mat-list-option routerLinkActive="active-link" [routerLink]="['certification']">
+                7.{{(labels$ |async).certifications}}
+            </mat-list-option>
+            <mat-list-option routerLinkActive="active-link" [routerLink]="['interest']">
+                8.{{(labels$ |async).interests}}
+            </mat-list-option>
+            <mat-list-option routerLinkActive="active-link" [routerLink]="['objective']">
+                9.{{(labels$|async).objective}}
+            </mat-list-option>
+            <mat-list-option routerLinkActive="active-link" [routerLink]="['review']">
+                10.{{(labels$ |async).review}}
+            </mat-list-option>
         </mat-selection-list>
     </div>
     <div class="content">

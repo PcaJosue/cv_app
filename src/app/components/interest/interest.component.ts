@@ -35,8 +35,8 @@ export class InterestComponent implements OnInit {
 
 
   goTo(step) {
-    if (step === 'next') this.route.navigate(['create', 'objetive'])
-    else this.route.navigate(['create', 'certification'])
+    if (step === 'next') this.route.navigate(['create', 'objective']);
+    else this.route.navigate(['create', 'certification']);
   }
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -22,6 +22,7 @@ export class LaboralComponent implements OnInit {
   public laboralList$ = this.store.select(selects.selectLaboral);
   public buttons$ = this.store.select(selectButtons);
 
+  @ViewChild('jobInput') jobInput;
   readonly separatorKeysCodes = [ENTER] as const;
   private messages;
 
@@ -49,10 +50,12 @@ export class LaboralComponent implements OnInit {
   }
 
   complete(step) {
-    if (step === 'next')
+    if (step == 'next') {
       this.route.navigate(['create', 'academic'])
-    else (step === 'back')
-    this.route.navigate(['create', 'personal'])
+    }
+    if (step == 'back') {
+      this.route.navigate(['create', 'personal'])
+    }
 
   }
 
@@ -96,6 +99,7 @@ export class LaboralComponent implements OnInit {
     this.laboralForm.patchValue({ ...data })
     this.verifyEndDate(!this.laboralForm.get('endDate').value)
     this.isCurrentlyWorking.setValue(!this.laboralForm.get('endDate').value)
+    this.jobInput.nativeElement.focus();
   }
 
 

@@ -9,7 +9,7 @@ export class AlertService {
   reference: MatSnackBarRef<TextOnlySnackBar>;
   constructor(private _snackBar: MatSnackBar) { }
 
-  open(message: string, type: AlertType, duration: number = 60000) {
+  open(message: string, type: AlertType, duration: number = 6000) {
 
     const config: MatSnackBarConfig = {
       panelClass: this.getClass(type),

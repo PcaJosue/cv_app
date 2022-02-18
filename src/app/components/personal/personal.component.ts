@@ -56,12 +56,14 @@ export class PersonalComponent implements OnInit {
     this.messages$.subscribe(data => this.messages = data)
   }
 
-  complete() {
-
+  save() {
     if (!this.formIsValid()) return;
     this.store.dispatch(actions.addPersonalInformation({ data: this.personalForm.value }));
-    this.route.navigate(['create', 'laboral'])
+  }
 
+  complete() {
+    if (!this.formIsValid()) return;
+    this.route.navigate(['create', 'laboral'])
   }
 
   formIsValid(): boolean {

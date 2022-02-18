@@ -1,23 +1,24 @@
 import { createReducer, on } from "@ngrx/store";
+import { sortArray } from "src/app/common/helpers/helpers";
 import { CertificationModel } from "src/app/models/certification.model";
 import * as actions from "./certification.actions";
 
 
 /**actions */
 const onAddCertificationInformationList = (state: any, { data }) => {
-    return data;
+    return sortArray([...data], 'date');
 }
 
 const onAddCertificationInformation = (state: any, { data }) => {
     const list = [...state];
     list.push(data);
-    return list;
+    return sortArray(list, 'date');
 }
 
 const onRemoveCertificationInformation = (state: any, { index }) => {
     const list = [...state];
     list.splice(index, 1);
-    return list;
+    return sortArray(list, 'date');
 }
 
 const INITIAL: CertificationModel[] = []

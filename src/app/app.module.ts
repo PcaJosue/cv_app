@@ -21,6 +21,9 @@ import { AchievementComponent } from './components/achievement/achievement.compo
 import { CertificationComponent } from './components/certification/certification.component';
 import { InterestComponent } from './components/interest/interest.component';
 import { ObjectiveComponent } from './components/objective/objective.component';
+import { ReviewComponent } from './components/review/review.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { CreatePdfService } from './services/create-pdf.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { ObjectiveComponent } from './components/objective/objective.component';
     AchievementComponent,
     CertificationComponent,
     InterestComponent,
-    ObjectiveComponent
+    ObjectiveComponent,
+    ReviewComponent
   ],
   imports: [
     AppRoutingModule,
@@ -46,9 +50,11 @@ import { ObjectiveComponent } from './components/objective/objective.component';
     MaterialModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PdfViewerModule
+
   ],
-  providers: [AlertService],
+  providers: [AlertService, CreatePdfService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

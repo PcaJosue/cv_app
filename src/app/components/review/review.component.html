@@ -1,0 +1,40 @@
+<div class="header w-full" fxLayout='row' fxLayoutAlign='space-between center'>
+
+    <div class="item__title">
+        <button mat-stroked-button type='button' (click)='goTo("back")' color="primary">
+            <mat-icon>arrow_back_ios_new</mat-icon>
+        </button>
+        <span>{{(labels$ |async).title}}</span>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem">
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Select Format:</mat-label>
+            <mat-select [formControl]="format" name="format">
+                <mat-option *ngFor="let format of formats" [value]="format">
+                    {{format}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+
+        <button mat-fab color="primary" (click)="download()" [matTooltip]="(labels$ |async).download">
+            <mat-icon>file_download</mat-icon>
+        </button>
+
+        <button (click)="exportData()" mat-fab color="primary" [matTooltip]="(labels$ |async).export">
+            <mat-icon>ios_share</mat-icon>
+        </button>
+
+    </div>
+
+
+
+</div>
+
+<div>
+    <pdf-viewer [src]="pdfSrc" [render-text]="true" [original-size]="true" style=" height: 70vh">
+    </pdf-viewer>
+</div>

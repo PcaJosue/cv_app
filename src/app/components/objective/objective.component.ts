@@ -18,7 +18,7 @@ export class ObjectiveComponent implements OnInit {
 
   public labels$ = this.store.select(selectObjective);
   public messages$ = this.store.select(selectMessages);
-  public interestList$ = this.store.select(selects.selectObjective);
+  public objective$ = this.store.select(selects.selectObjective);
   public buttons$ = this.store.select(selectButtons);
 
   public objective = new FormControl(null)
@@ -26,6 +26,11 @@ export class ObjectiveComponent implements OnInit {
   constructor(private route: Router, private store: Store, private alertService: AlertService) { }
 
   ngOnInit(): void {
+
+    this.objective$.subscribe(data => {
+      this.objective.setValue(data)
+    })
+
     this.objective.valueChanges.pipe(
       debounceTime(500)).subscribe(() => {
         this.addObjectiveInformation();
@@ -33,8 +38,8 @@ export class ObjectiveComponent implements OnInit {
   }
 
   goTo(step) {
-    if (step === 'next') this.route.navigate(['create', 'resume'])
-    else this.route.navigate(['create', 'interest'])
+    if (step === 'next') this.route.navigate(['create', 'review']);
+    else this.route.navigate(['create', 'interest']);
   }
 
 

@@ -10,6 +10,7 @@ import { LaboralComponent } from '../components/laboral/laboral.component';
 import { LanguageComponent } from '../components/language/language.component';
 import { ObjectiveComponent } from '../components/objective/objective.component';
 import { PersonalComponent } from '../components/personal/personal.component';
+import { ReviewComponent } from '../components/review/review.component';
 import { SkillComponent } from '../components/skill/skill.component';
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
             { path: 'certification', component: CertificationComponent },
             { path: 'interest', component: InterestComponent },
             { path: 'objective', component: ObjectiveComponent },
+            { path: 'review', component: ReviewComponent },
         ]
     },
     { path: '**', redirectTo: '' }

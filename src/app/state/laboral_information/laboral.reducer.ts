@@ -1,23 +1,24 @@
 import { createReducer, on } from "@ngrx/store";
+import { sortArray } from "src/app/common/helpers/helpers";
 import { LaboralModel } from "src/app/models/laboral.model";
 import * as actions from "./laboral.actions";
 
 
 /**actions */
 const onAddLaboralInformationList = (state: any, { data }) => {
-    return data;
+    return sortArray([...data], 'startDate');;
 }
 
 const onAddLaboralInformation = (state: any, { data }) => {
     const list = [...state];
     list.push(data);
-    return list;
+    return sortArray(list, 'startDate');
 }
 
 const onRemoveLaboralInformation = (state: any, { index }) => {
     const list = [...state];
     list.splice(index, 1);
-    return list;
+    return sortArray(list, 'startDate');;
 }
 
 const INITIAL: LaboralModel[] = []

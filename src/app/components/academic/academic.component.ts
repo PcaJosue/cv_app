@@ -57,8 +57,8 @@ export class AcademicComponent implements OnInit {
   }
 
   goTo(step) {
-    if (step === 'next') this.route.navigate(['create', 'laboral'])
-    else this.route.navigate(['create', 'academic'])
+    if (step === 'next') this.route.navigate(['create', 'language'])
+    else { this.route.navigate(['create', 'laboral']) }
   }
 
 

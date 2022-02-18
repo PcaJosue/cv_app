@@ -49,3 +49,15 @@ export const selectInterest = (state: any) => {
 export const selectObjective = (state: any) => {
     return state.manage_language.labels.objective
 }
+
+export const selectFormats = (state: any) => {
+    return state.manage_language.labels.formats
+}
+
+export const selectReview = (state: any) => {
+    return state.manage_language.labels.review
+}
+
+export const selectPDF = (state: any) => {
+    return state.manage_language.labels.pdf
+}
