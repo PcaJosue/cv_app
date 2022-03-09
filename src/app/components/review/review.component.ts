@@ -27,7 +27,7 @@ export class ReviewComponent implements OnInit {
 
     this.store.subscribe((data: any) => {
       this.formats = data.manage_language.labels.formats
-      this.format.setValue(this.formats[0])
+      this.format.setValue(this.formats[1])
       this.information = { ...data }
       this.information.languageCode = this.information.manage_language.language;
       delete this.information.manage_language;
@@ -41,13 +41,19 @@ export class ReviewComponent implements OnInit {
 
   }
 
-  createPdf(format, data) {
+  async createPdf(format, data) {
+
     if (this.formats[0] === format) {
-      this.pdf = this.pdfService.createPdf(data);
-      this.pdf.getDataUrl((url) => {
-        this.pdfSrc = url
-      })
+      this.pdf = await this.pdfService.createPdf(data);
+
+    } else if (this.formats[1] === format) {
+      this.pdf = await this.pdfService.createCoolPdf(data);
     }
+
+
+    this.pdf.getDataUrl((url) => {
+      this.pdfSrc = url
+    })
   }
 
   download() {

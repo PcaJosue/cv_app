@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Canvas, ICreatePDF, Line, PdfMakeWrapper } from 'pdfmake-wrapper';
-import * as pdfMake from "pdfmake/build/pdfmake";
+import { Canvas, Ellipse, ICreatePDF, Img, Line, PdfMakeWrapper, Polyline, Rect, Stack } from 'pdfmake-wrapper';
 import pdfFonts from "src/assets/fonts.js";
 import * as _ from 'lodash';
 import { Store } from '@ngrx/store';
 import { selectPDF } from '../state/manage_language/manage_language.selects';
-import { C } from '@angular/cdk/keycodes';
+
+
+const MAX_HEIGHT = 840;
+const MAX_WIDTH = 594;
+const profile = 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +18,11 @@ export class CreatePdfService {
 
   public labels;
   private colors: any = {
-    gray: '#919190'
+    gray: '#919190',
+    primary: '#fff',
+    secondary: '#0335fc',
+    circle: '#db34eb',
+    disabled: '#cfcfcf'
   }
 
 
@@ -40,12 +47,175 @@ export class CreatePdfService {
     PdfMakeWrapper.useFont('roboto')
   }
 
+
+  getImage() {
+    return new Promise((resolve, reject) => {
+
+      let circleCanvas: HTMLCanvasElement = document.createElement('canvas')
+      let circleCtx: CanvasRenderingContext2D = circleCanvas.getContext('2d')
+      const img = new Image(130, 130);
+
+      img.crossOrigin = "anonymous"
+      img.onload = () => {
+        circleCanvas.width = MAX_HEIGHT;
+        circleCanvas.height = MAX_WIDTH;
+
+        // draw image with circle shape clip
+        circleCtx.save()
+        circleCtx.beginPath()
+        circleCtx.arc((MAX_WIDTH / 6), 120, 65, 0, Math.PI * 2, true)
+        circleCtx.closePath();
+        circleCtx.clip()
+        circleCtx.drawImage(img, (MAX_WIDTH / 6) - 65, 120 - 65, 130, 130);
+
+        circleCtx.restore();
+        resolve(circleCanvas.toDataURL())
+      }
+      img.src = profile;
+
+    })
+  }
+
+  async createCoolPdf(data: any) {
+
+    const labels = this.labels.international;
+    const languageLevels = [...Array(7).keys()]
+    const skillLevels = [...Array(5).keys()]
+    const personalData = [];
+    const languageData = [];
+    const skillData = [];
+    const interestData = [];
+
+    try {
+      const circleCanvas: any = await this.getImage();
+
+      const pdf = new PdfMakeWrapper();
+      pdf.pageSize('A4');
+      this.setStyles(pdf);
+
+      let img = await new Img(circleCanvas).absolutePosition(0, 0).build();
+
+      const rect = new Rect([0, 0], [MAX_WIDTH / 3, MAX_HEIGHT]).color(this.colors.primary).end;
+      const polyline = new Polyline([
+        { x: 0, y: 0 },
+        { x: MAX_WIDTH / 3, y: 0 },
+        { x: MAX_WIDTH / 3, y: 120 },
+        { x: MAX_WIDTH / 6, y: 150 },
+        { x: 0, y: 120 },
+      ]).color(this.colors.secondary).end
+      const ellipse = new Ellipse([MAX_WIDTH / 6, 120], 70).color(this.colors.circle).end;
+
+      pdf.background({
+        canvas: [
+          rect
+        ]
+      })
+
+      console.log('data', data);
+
+      if (data.personal) {
+        const personal = data.personal;
+        personalData.push({ text: 'Personal Data', style: 'title' });
+        personalData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 175, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
+        personalData.push({ text: personal.ocupation, alignment: 'center', bold: true });
+        personalData.push({ text: [{ text: '', style: 'icons' }, '   ', `${personal.firstName} ${personal.lastName}`] });
+        personalData.push({ text: [{ text: '', style: 'icons' }, '   ', `${personal.email}`] });
+        personalData.push({ text: [{ text: '', style: 'icons' }, '   ', `${personal.phone}`] });
+
+        if (personal.networks.other) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.other, link: personal.networks.other, style: 'link' }] });
+        if (personal.networks.linkedin) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.linkedin, link: personal.networks.linkedin, style: 'link' }] });
+        if (personal.networks.github) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.github, link: personal.networks.github, style: 'link' }] });
+        if (personal.networks.instagram) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.instagram, link: personal.networks.instagram, style: 'link' }] });
+        if (personal.networks.twitter) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.twitter, link: personal.networks.twitter, style: 'link' }] });
+        if (personal.networks.facebook) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.facebook, link: personal.networks.facebook, style: 'link' }] });
+      }
+
+
+      if (data.language) {
+        const language = data.language;
+
+
+
+        languageData.push({ text: 'Languages', style: 'title', margin: [0, 10, 0, 0] });
+        languageData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 175, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
+        for (let l of language) {
+
+          languageData.push({
+            columns: [
+              { text: l.name },
+              { text: languageLevels.map(i => ({ text: '', style: 'icons', color: (i + 1) <= l.level.id ? this.colors.circle : this.colors.disabled })) }
+            ]
+          })
+
+        }
+
+      }
+
+
+      if (data.skill) {
+        const skills = data.skill;
+        skillData.push({ text: 'Skills', style: 'title', margin: [0, 10, 0, 0] });
+        skillData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 175, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
+        for (let s of skills) {
+          skillData.push({
+            columns: [
+              { text: s.name },
+              { text: skillLevels.map(i => ({ text: '', style: 'icons', color: (i + 1) <= s.level.id ? this.colors.circle : this.colors.disabled })) }
+            ]
+          })
+        }
+      }
+
+      if (data.interest) {
+        const interests = data.interest;
+        interestData.push({ text: 'Interests', style: 'title', margin: [0, 10, 0, 0] });
+        interestData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 175, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
+        interestData.push({ text: interests.map((i, index) => `${i.name}${index < interests.length - 1 ? ', ' : ''}`) })
+
+      }
+
+
+      pdf.add({
+        columns: [
+          {
+            stack: [
+              { canvas: [polyline, ellipse] },
+              { text: `${data.personal.firstName}  ${data.personal.lastName}`, width: (MAX_WIDTH / 3), bold: true, fontSize: 15, color: this.colors.primary, alignment: 'center', relativePosition: { x: 0, y: -170 } },
+              { ...img },
+              {
+                stack: [...personalData, ...languageData, ...skillData, ...interestData], margin: [5, 10, 0, 0]
+              }
+            ],
+            width: (MAX_WIDTH / 3)
+          },
+          { stack: [''], width: (MAX_WIDTH * 2 / 3) }
+        ],
+        absolutePosition: [0, 0]
+      })
+
+
+
+      return pdf.create();
+
+    } catch (error) {
+      console.log('error', error);
+    }
+
+
+  }
+
+
+
+
+
+
   createPdf(data: any): ICreatePDF {
 
     const labels = this.labels.international;
     const pdf = new PdfMakeWrapper();
     const personalInfo = [];
     const links = [];
+
 
     pdf.pageSize('A4');
     this.setStyles(pdf);
@@ -157,7 +327,7 @@ export class CreatePdfService {
           text: [
             { text: _.capitalize(skill.name), margin: [0, 0, 0, 3] },
             ' ',
-            { text: `( ${_.lowerCase(skill.level)} )`, color: this.colors.gray, margin: [0, 0, 0, 3] },
+            { text: `( ${_.lowerCase(skill.level.name)} )`, color: this.colors.gray, margin: [0, 0, 0, 3] },
             ' '
           ]
         })
@@ -183,7 +353,7 @@ export class CreatePdfService {
           text: [
             { text: _.capitalize(language.name), margin: [0, 0, 0, 3] },
             ' ',
-            { text: `( ${_.lowerCase(language.level)} )`, color: this.colors.gray, margin: [0, 0, 0, 3] },
+            { text: `( ${_.lowerCase(language.level.name)} )`, color: this.colors.gray, margin: [0, 0, 0, 3] },
             ' '
           ]
         })
@@ -269,8 +439,6 @@ export class CreatePdfService {
 
     }
 
-    console.log('pdf', pdf.getDefinition());
-    console.log('pdf', pdf);
 
     return pdf.create();
   }
@@ -290,22 +458,34 @@ export class CreatePdfService {
         fontSize: 18,
         bold: true
       },
+      title: {
+        fontSize: 15,
+        bold: true,
+        color: this.colors.secondary
+      },
       icons: {
         font: 'icons'
       },
       description: {
         fontSize: 12
+      },
+      link: {
+        fontSize: 10
       }
     });
   }
 }
 
 
-//  .icon-mail:before { content: '\e800'; } /* '' */
+
+// .icon - mail:before { content: '\e800'; } /* '' */
 // .icon - mobile:before { content: '\e801'; } /* '' */
 // .icon - website:before { content: '\e802'; } /* '' */
+// .icon - user:before { content: '\e803'; } /* '' */
+// .icon - star:before { content: '\e804'; } /* '' */
 // .icon - twitter:before { content: '\f099'; } /* '' */
 // .icon - github - circled:before { content: '\f09b'; } /* '' */
+// .icon - circle:before { content: '\f111'; } /* '' */
 // .icon - instagram:before { content: '\f16d'; } /* '' */
 // .icon - whatsapp:before { content: '\f232'; } /* '' */
 // .icon - linkedin - squared:before { content: '\f30c'; } /* '' */

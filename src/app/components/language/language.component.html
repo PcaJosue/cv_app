@@ -25,8 +25,8 @@
                 <mat-form-field appearance="outline">
                     <mat-label>{{(labels$|async).level}}</mat-label>
                     <mat-select matNativeControl formControlName='level'>
-                        <mat-option *ngFor="let level of (labels$ | async ).levels">
-                            {{level}}
+                        <mat-option *ngFor="let level of (labels$ | async ).levels" [value]="level">
+                            {{level.name}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
@@ -48,7 +48,7 @@
                         <div class="language__item__header">
                             <div class="language__item__header__title">
                                 {{language.name}}
-                                <span class="language__item__header__subtitle"> ({{language.level}}) </span>
+                                <span class="language__item__header__subtitle"> ({{language.level.name}}) </span>
                             </div>
                             <div class="language__item__header__actions">
                                 <mat-icon (click)='remove(i)' [matTooltip]="(buttons$|async).remove" color='warn'>

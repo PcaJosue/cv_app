@@ -13,7 +13,6 @@ export class CreateCVComponent implements OnInit {
 
   constructor(private store: Store) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

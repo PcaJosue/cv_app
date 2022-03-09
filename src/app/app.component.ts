@@ -35,7 +35,6 @@ export class AppComponent {
       this.store.dispatch(addCertificationInformationList({ data: data.certification }))
       this.store.dispatch(addInterestInformationList({ data: data.interest }))
       this.store.dispatch(addObjectiveInformation({ data: data.objective }))
-
     }
   }
 

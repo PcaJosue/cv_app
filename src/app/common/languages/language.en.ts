@@ -61,14 +61,14 @@ export const LANGUAGE_EN = {
 
     },
     language: {
-        levels: ['Beginner', 'Elementary', 'Intermediate', 'Upper Intermediate', 'Advanced', 'Proficient', 'Native'],
+        levels: [{ id: 1, name: 'Beginner' }, { id: 2, name: 'Elementary' }, { id: 3, name: 'Intermediate' }, { id: 4, name: 'Upper Intermediate' }, { id: 5, name: 'Advanced' }, { id: 6, name: 'Proficient' }, { id: 7, name: 'Native' }],
         title: 'Language Information',
         name: 'Language Name',
         level: 'Level',
         myInformation: 'My Languages',
     },
     skill: {
-        levels: ['Novice', 'Advanced Beginner', 'Competent', 'Proficient', 'Expert'],
+        levels: [{ id: 1, name: 'Novice' }, { id: 2, name: 'Advanced Beginner' }, { id: 3, name: 'Competent' }, { id: 4, name: 'Proficient' }, { id: 5, name: 'Expert' }],
         title: 'Skill Information',
         name: 'Skill Name',
         level: 'Level',
