@@ -39,7 +39,7 @@ export const LANGUAGE_EN = {
         startDate: 'Start Date',
         endDate: 'End Date',
         currentlyWorking: 'currently working',
-        functionsPlaceholder: 'Describe your functions...',
+        functionsPlaceholder: 'Describe your functions, separe each sentence with a dot',
         myInformation: 'My Laboral Information',
         functions: 'Functions'
     },

@@ -19,6 +19,17 @@
                 <input matInput formControlName='lastName'>
             </mat-form-field>
 
+            <div fxLayout="row" fxLayoutGap="0.5rem" fxLayoutAlign="start center">
+                <label *ngIf="!photo" for="file-upload" class="custom-file-upload">
+                    Upload photo
+                </label>
+                <mat-icon *ngIf="!photo" matTooltip="use 130px x 130px">info</mat-icon>
+                <img *ngIf="photo" [src]="photo" style="width:130px;height:130px">
+                <input id="file-upload" type="file" (change)="fileChanged($event)" />
+                <button *ngIf="photo" mat-mini-fab color="warn" type="button" (click)="photo=null">
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </div>
         </div>
 
         <div class="w-full" fxLayout='row' fxLayoutGap='2rem'>

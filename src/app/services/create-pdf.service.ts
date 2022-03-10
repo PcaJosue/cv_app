@@ -19,10 +19,11 @@ export class CreatePdfService {
   public labels;
   private colors: any = {
     gray: '#919190',
-    primary: '#fff',
-    secondary: '#0335fc',
-    circle: '#db34eb',
-    disabled: '#cfcfcf'
+    primary: '#ebeaeb',
+    secondary: '#587181',
+    circle: '#d2d2d2',
+    disabled: '#cfcfcf',
+    secondaryText: '#587181'
   }
 
 
@@ -48,7 +49,7 @@ export class CreatePdfService {
   }
 
 
-  getImage() {
+  getImage(profile) {
     return new Promise((resolve, reject) => {
 
       let circleCanvas: HTMLCanvasElement = document.createElement('canvas')
@@ -85,15 +86,20 @@ export class CreatePdfService {
     const languageData = [];
     const skillData = [];
     const interestData = [];
+    const objectiveData = [];
+    const laboralData = [];
+    const academicData = [];
+    const achievementData = [];
+    const certificationData = [];
 
     try {
-      const circleCanvas: any = await this.getImage();
+      const circleCanvas: any = data.personal.photo ? await this.getImage(data.personal.photo) : null;
 
       const pdf = new PdfMakeWrapper();
       pdf.pageSize('A4');
       this.setStyles(pdf);
 
-      let img = await new Img(circleCanvas).absolutePosition(0, 0).build();
+      let img = circleCanvas ? await new Img(circleCanvas).absolutePosition(0, 0).build() : { text: '' };
 
       const rect = new Rect([0, 0], [MAX_WIDTH / 3, MAX_HEIGHT]).color(this.colors.primary).end;
       const polyline = new Polyline([
@@ -122,12 +128,12 @@ export class CreatePdfService {
         personalData.push({ text: [{ text: '', style: 'icons' }, '   ', `${personal.email}`] });
         personalData.push({ text: [{ text: '', style: 'icons' }, '   ', `${personal.phone}`] });
 
-        if (personal.networks.other) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.other, link: personal.networks.other, style: 'link' }] });
-        if (personal.networks.linkedin) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.linkedin, link: personal.networks.linkedin, style: 'link' }] });
-        if (personal.networks.github) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.github, link: personal.networks.github, style: 'link' }] });
-        if (personal.networks.instagram) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.instagram, link: personal.networks.instagram, style: 'link' }] });
-        if (personal.networks.twitter) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.twitter, link: personal.networks.twitter, style: 'link' }] });
-        if (personal.networks.facebook) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.facebook, link: personal.networks.facebook, style: 'link' }] });
+        if (personal.networks?.other) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.other, link: personal.networks.other, style: 'link' }] });
+        if (personal.networks?.linkedin) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.linkedin, link: personal.networks.linkedin, style: 'link' }] });
+        if (personal.networks?.github) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.github, link: personal.networks.github, style: 'link' }] });
+        if (personal.networks?.instagram) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.instagram, link: personal.networks.instagram, style: 'link' }] });
+        if (personal.networks?.twitter) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.twitter, link: personal.networks.twitter, style: 'link' }] });
+        if (personal.networks?.facebook) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.facebook, link: personal.networks.facebook, style: 'link' }] });
       }
 
 
@@ -143,7 +149,7 @@ export class CreatePdfService {
           languageData.push({
             columns: [
               { text: l.name },
-              { text: languageLevels.map(i => ({ text: '', style: 'icons', color: (i + 1) <= l.level.id ? this.colors.circle : this.colors.disabled })) }
+              { text: languageLevels.map(i => ({ text: '', style: 'icons', color: (i + 1) <= l.level.id ? this.colors.secondary : this.colors.disabled })) }
             ]
           })
 
@@ -160,7 +166,7 @@ export class CreatePdfService {
           skillData.push({
             columns: [
               { text: s.name },
-              { text: skillLevels.map(i => ({ text: '', style: 'icons', color: (i + 1) <= s.level.id ? this.colors.circle : this.colors.disabled })) }
+              { text: skillLevels.map(i => ({ text: '', style: 'icons', color: (i + 1) <= s.level.id ? this.colors.secondary : this.colors.disabled })) }
             ]
           })
         }
@@ -173,6 +179,53 @@ export class CreatePdfService {
         interestData.push({ text: interests.map((i, index) => `${i.name}${index < interests.length - 1 ? ', ' : ''}`) })
 
       }
+
+
+      if (data.objective) {
+        objectiveData.push({ text: 'Profile', style: 'title', margin: [0, 10, 0, 0] });
+        objectiveData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 400, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
+        objectiveData.push({ text: data.objective, style: 'description' })
+
+      }
+
+      if (data.academic) {
+        const academics = data.academic;
+        academicData.push({ text: 'Academic Information', style: 'title', margin: [0, 10, 0, 0] });
+        academicData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 400, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
+        for (let academic of academics) {
+          academicData.push({ columns: [{ text: academic.career, bold: true }, { alignment: 'right', style: 'secondaryText', text: `${academic.startDate} - ${academic.endDate ? academic.endDate : 'today'}` }] })
+          academicData.push({ text: `${academic.school} - ${_.capitalize(academic.location)}`, style: 'secondaryText', margin: [0, 0, 0, 5] })
+        }
+      }
+
+      if (data.laboral) {
+        laboralData.push({ text: 'Laboral Information', style: 'title', margin: [0, 10, 0, 0] });
+        laboralData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 400, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
+        for (let laboral of data.laboral) {
+          laboralData.push({ columns: [{ text: laboral.job, bold: true }, { alignment: 'right', style: 'secondaryText', text: `${laboral.startDate} - ${laboral.endDate ? laboral.endDate : 'today'}` }] })
+          laboralData.push({ text: `${_.capitalize(laboral.employer)} - ${_.capitalize(laboral.city)}`, style: 'secondaryText' })
+          laboralData.push({ ul: laboral.functions.split('\n').filter(l => l.length > 0).map(l => ({ text: l, style: 'description' })), margin: [0, 0, 0, 5] })
+        }
+      }
+
+      if (data.certification) {
+        certificationData.push({ text: 'Certifications and Courses', style: 'title', margin: [0, 10, 0, 0] });
+        certificationData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 400, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
+        for (let certification of data.certification) {
+          certificationData.push({ columns: [{ text: certification.name, bold: true }, { alignment: 'right', style: 'secondaryText', text: certification.date }] })
+          certificationData.push({ text: _.capitalize(certification.school), style: 'secondaryText', margin: [0, 0, 0, 5] })
+        }
+      }
+
+      if (data.achievement) {
+        achievementData.push({ text: 'Achievements', style: 'title', margin: [0, 10, 0, 0] });
+        achievementData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 400, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
+        for (let achiev of data.achievement) {
+          achievementData.push({ columns: [{ text: achiev.name, bold: true }, { alignment: 'right', style: 'secondaryText', text: achiev.date }] })
+          achievementData.push({ text: _.capitalize(achiev.description), style: 'description', margin: [0, 0, 0, 5] })
+        }
+      }
+
 
 
       pdf.add({
@@ -188,7 +241,7 @@ export class CreatePdfService {
             ],
             width: (MAX_WIDTH / 3)
           },
-          { stack: [''], width: (MAX_WIDTH * 2 / 3) }
+          { stack: [...objectiveData, ...academicData, ...laboralData, ...certificationData, ...achievementData], width: (MAX_WIDTH * 2 / 3), margin: [10, 0, 10, 0] }
         ],
         absolutePosition: [0, 0]
       })
@@ -278,7 +331,7 @@ export class CreatePdfService {
             { text: ` ${_.capitalize(laboral.city)} : ${_.capitalize(laboral.country)}`, color: this.colors.gray, alignment: 'right' }
           ], margin: [0, 0, 0, 3]
         })
-        information.push({ text: laboral.functions ? laboral.functions : '', margin: [0, 0, 0, 3], style: 'description' })
+        information.push({ ul: laboral.functions ? laboral.functions.split('\n').filter(l => l.length > 0).map(f => ({ text: f, style: 'description' })) : [], margin: [0, 0, 0, 3] })
         return { stack: information, margin: [0, 0, 0, 5] }
       })
 
@@ -471,6 +524,10 @@ export class CreatePdfService {
       },
       link: {
         fontSize: 10
+      },
+      secondaryText: {
+        fontSize: 12,
+        color: this.colors.secondaryText
       }
     });
   }

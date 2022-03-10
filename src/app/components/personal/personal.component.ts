@@ -19,6 +19,7 @@ export class PersonalComponent implements OnInit {
   public messages$ = this.store.select(selectMessages);
   public buttons$ = this.store.select(selectButtons);
   private messages;
+  public photo;
 
 
   public personalForm = new FormGroup({
@@ -51,14 +52,23 @@ export class PersonalComponent implements OnInit {
 
     this.store.select(selects.selectPersonal).subscribe(data => {
       this.personalForm.patchValue({ ...data })
+      this.photo = data.photo
     })
 
     this.messages$.subscribe(data => this.messages = data)
   }
 
+  fileChanged(event) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.photo = reader.result;
+    }
+    reader.readAsDataURL(event.target.files[0])
+  }
   save() {
     if (!this.formIsValid()) return;
-    this.store.dispatch(actions.addPersonalInformation({ data: this.personalForm.value }));
+    this.store.dispatch(actions.addPersonalInformation({ data: { ...this.personalForm.value, photo: this.photo } }));
+    this.alertService.open('saved', AlertType.Success)
   }
 
   complete() {
