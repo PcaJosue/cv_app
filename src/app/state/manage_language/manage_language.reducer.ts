@@ -14,7 +14,7 @@ const onChangeLanguage = (state: any, { code }) => {
     console.log('code', code);
     return {
         language: code,
-        labels: code === 'en' ? LANGUAGE_EN : LANGUAGE_EN
+        labels: code === 'en' ? LANGUAGE_EN : LANGUAGE_ES
     }
 }
 

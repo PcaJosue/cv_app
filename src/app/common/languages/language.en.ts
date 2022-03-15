@@ -137,6 +137,18 @@ export const LANGUAGE_EN = {
             certification: 'Certifications / Courses',
             interest: 'Interests'
 
+        },
+        cool: {
+            personal: 'Personal Data',
+            language: 'Languages',
+            skill: 'Skills',
+            interest: 'Interests',
+            profile: 'Profile',
+            academic: 'Academic Information',
+            laboral: 'Laboral Information',
+            certification: 'Certifications and Courses',
+            achievement: 'Achievements'
+
         }
     }
 

@@ -79,7 +79,7 @@ export class CreatePdfService {
 
   async createCoolPdf(data: any) {
 
-    const labels = this.labels.international;
+    const labels = this.labels.cool;
     const languageLevels = [...Array(7).keys()]
     const skillLevels = [...Array(5).keys()]
     const personalData = [];
@@ -121,7 +121,7 @@ export class CreatePdfService {
 
       if (data.personal) {
         const personal = data.personal;
-        personalData.push({ text: 'Personal Data', style: 'title' });
+        personalData.push({ text: labels.personal, style: 'title' });
         personalData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 175, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
         personalData.push({ text: personal.ocupation, alignment: 'center', bold: true });
         personalData.push({ text: [{ text: '', style: 'icons' }, '   ', `${personal.firstName} ${personal.lastName}`] });
@@ -142,7 +142,7 @@ export class CreatePdfService {
 
 
 
-        languageData.push({ text: 'Languages', style: 'title', margin: [0, 10, 0, 0] });
+        languageData.push({ text: labels.language, style: 'title', margin: [0, 10, 0, 0] });
         languageData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 175, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
         for (let l of language) {
 
@@ -160,7 +160,7 @@ export class CreatePdfService {
 
       if (data.skill) {
         const skills = data.skill;
-        skillData.push({ text: 'Skills', style: 'title', margin: [0, 10, 0, 0] });
+        skillData.push({ text: labels.skill, style: 'title', margin: [0, 10, 0, 0] });
         skillData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 175, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
         for (let s of skills) {
           skillData.push({
@@ -174,7 +174,7 @@ export class CreatePdfService {
 
       if (data.interest) {
         const interests = data.interest;
-        interestData.push({ text: 'Interests', style: 'title', margin: [0, 10, 0, 0] });
+        interestData.push({ text: labels.interest, style: 'title', margin: [0, 10, 0, 0] });
         interestData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 175, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
         interestData.push({ text: interests.map((i, index) => `${i.name}${index < interests.length - 1 ? ', ' : ''}`) })
 
@@ -182,7 +182,7 @@ export class CreatePdfService {
 
 
       if (data.objective) {
-        objectiveData.push({ text: 'Profile', style: 'title', margin: [0, 10, 0, 0] });
+        objectiveData.push({ text: labels.profile, style: 'title', margin: [0, 10, 0, 0] });
         objectiveData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 400, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
         objectiveData.push({ text: data.objective, style: 'description' })
 
@@ -190,7 +190,7 @@ export class CreatePdfService {
 
       if (data.academic) {
         const academics = data.academic;
-        academicData.push({ text: 'Academic Information', style: 'title', margin: [0, 10, 0, 0] });
+        academicData.push({ text: labels.academic, style: 'title', margin: [0, 10, 0, 0] });
         academicData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 400, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
         for (let academic of academics) {
           academicData.push({ columns: [{ text: academic.career, bold: true }, { alignment: 'right', style: 'secondaryText', text: `${academic.startDate} - ${academic.endDate ? academic.endDate : 'today'}` }] })
@@ -199,7 +199,7 @@ export class CreatePdfService {
       }
 
       if (data.laboral) {
-        laboralData.push({ text: 'Laboral Information', style: 'title', margin: [0, 10, 0, 0] });
+        laboralData.push({ text: labels.laboral, style: 'title', margin: [0, 10, 0, 0] });
         laboralData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 400, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
         for (let laboral of data.laboral) {
           laboralData.push({ columns: [{ text: laboral.job, bold: true }, { alignment: 'right', style: 'secondaryText', text: `${laboral.startDate} - ${laboral.endDate ? laboral.endDate : 'today'}` }] })
@@ -209,7 +209,7 @@ export class CreatePdfService {
       }
 
       if (data.certification) {
-        certificationData.push({ text: 'Certifications and Courses', style: 'title', margin: [0, 10, 0, 0] });
+        certificationData.push({ text: labels.certification, style: 'title', margin: [0, 10, 0, 0] });
         certificationData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 400, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
         for (let certification of data.certification) {
           certificationData.push({ columns: [{ text: certification.name, bold: true }, { alignment: 'right', style: 'secondaryText', text: certification.date }] })
@@ -218,7 +218,7 @@ export class CreatePdfService {
       }
 
       if (data.achievement) {
-        achievementData.push({ text: 'Achievements', style: 'title', margin: [0, 10, 0, 0] });
+        achievementData.push({ text: labels.achievement, style: 'title', margin: [0, 10, 0, 0] });
         achievementData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 400, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
         for (let achiev of data.achievement) {
           achievementData.push({ columns: [{ text: achiev.name, bold: true }, { alignment: 'right', style: 'secondaryText', text: achiev.date }] })
@@ -233,7 +233,7 @@ export class CreatePdfService {
           {
             stack: [
               { canvas: [polyline, ellipse] },
-              { text: `${data.personal.firstName}  ${data.personal.lastName}`, width: (MAX_WIDTH / 3), bold: true, fontSize: 15, color: this.colors.primary, alignment: 'center', relativePosition: { x: 0, y: -170 } },
+              { text: `${data.personal.firstName}  ${data.personal.lastName}`, width: (MAX_WIDTH / 3), bold: true, fontSize: 11, color: this.colors.primary, alignment: 'center', relativePosition: { x: 0, y: -170 } },
               { ...img },
               {
                 stack: [...personalData, ...languageData, ...skillData, ...interestData], margin: [5, 10, 0, 0]
@@ -252,6 +252,7 @@ export class CreatePdfService {
 
     } catch (error) {
       console.log('error', error);
+      return null;
     }
 
 
@@ -298,7 +299,7 @@ export class CreatePdfService {
     pdf.add({
       columns: [
         { stack: personalInfo },
-        { text: links, alignment: 'right', fontSize: 20 }
+        { text: links, alignment: 'right', fontSize: 14 }
       ],
       margin: [0, 0, 0, 15]
     })
@@ -378,7 +379,7 @@ export class CreatePdfService {
         const information = [];
         information.push({
           text: [
-            { text: _.capitalize(skill.name), margin: [0, 0, 0, 3] },
+            { text: _.capitalize(skill.name), style: 'descriptionBold', margin: [0, 0, 0, 3] },
             ' ',
             { text: `( ${_.lowerCase(skill.level.name)} )`, color: this.colors.gray, margin: [0, 0, 0, 3] },
             ' '
@@ -404,7 +405,7 @@ export class CreatePdfService {
         const information = [];
         information.push({
           text: [
-            { text: _.capitalize(language.name), margin: [0, 0, 0, 3] },
+            { text: _.capitalize(language.name), style: 'descriptionBold', margin: [0, 0, 0, 3] },
             ' ',
             { text: `( ${_.lowerCase(language.level.name)} )`, color: this.colors.gray, margin: [0, 0, 0, 3] },
             ' '
@@ -459,7 +460,7 @@ export class CreatePdfService {
         const information = [];
         information.push({
           text: [
-            { text: _.capitalize(certification.name), style: 'subheader', margin: [0, 0, 0, 3] },
+            { text: _.capitalize(certification.name), style: 'descriptionBold', margin: [0, 0, 0, 3] },
             ' ',
             { text: `( ${_.lowerCase(certification.school)} - ${certification.date ? certification.date : ''} )`, color: this.colors.gray, margin: [0, 0, 0, 3] },
           ]
@@ -499,20 +500,20 @@ export class CreatePdfService {
   setStyles(pdf) {
     pdf.defaultStyle({
       bold: false,
-      fontSize: 14
+      fontSize: 9
     });
 
     pdf.styles({
       header: {
-        fontSize: 22,
+        fontSize: 16,
         bold: true
       },
       subheader: {
-        fontSize: 18,
+        fontSize: 14,
         bold: true
       },
       title: {
-        fontSize: 15,
+        fontSize: 11,
         bold: true,
         color: this.colors.secondary
       },
@@ -520,13 +521,17 @@ export class CreatePdfService {
         font: 'icons'
       },
       description: {
-        fontSize: 12
+        fontSize: 8
+      },
+      descriptionBold: {
+        fontSize: 8,
+        bold: true
       },
       link: {
-        fontSize: 10
+        fontSize: 6
       },
       secondaryText: {
-        fontSize: 12,
+        fontSize: 7,
         color: this.colors.secondaryText
       }
     });

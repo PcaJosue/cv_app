@@ -17,7 +17,8 @@ export class ReviewComponent implements OnInit {
   information: any;
   pdf: any;
   pdfSrc: any = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
-  labels$ = this.store.select(selectReview)
+  labels$ = this.store.select(selectReview) ñ
+  name: string;
 
 
 
@@ -32,6 +33,7 @@ export class ReviewComponent implements OnInit {
       this.information.languageCode = this.information.manage_language.language;
       delete this.information.manage_language;
       this.createPdf(this.format.value, this.information)
+      this.name = `${this.information.personal.firstName}_${this.information.personal.lastName} `
 
     })
 
@@ -56,8 +58,15 @@ export class ReviewComponent implements OnInit {
     })
   }
 
-  download() {
-    this.pdfService.createPdf(this.information).download('adsfasd');
+  async download() {
+    if (this.formats[0] === this.format.value) {
+      this.pdf = await this.pdfService.createPdf(this.information).download(`${this.name ? this.name : ''}_${new Date().getTime().toString()}.pdf`);;
+
+    } else if (this.formats[1] === this.format.value) {
+      this.pdf = await this.pdfService.createCoolPdf(this.information);
+      this.pdf.download(`${this.name ? this.name : ''}_${new Date().getTime().toString()}.pdf`);;
+    }
+
   }
 
 
