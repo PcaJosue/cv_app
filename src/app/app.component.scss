@@ -1,3 +1,5 @@
+@import "./styles/colors.scss";
+
 .container {
     height: 100vh;
 }
@@ -6,4 +8,37 @@
     text-align: center;
     font-size: 3rem;
     padding: 1.5rem;
+}
+
+.content {
+    height: 100%;
+}
+
+.mobile {
+    background-color: $main-item-color;
+    color: $white-color;
+    display: flex;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+}
+
+@media (max-width: 900px) {
+    .content {
+        display: none;
+    }
+    .mobile {
+        display: flex;
+    }
+}
+
+@media (min-width: 901px) {
+    .content {
+        display: block;
+    }
+    .mobile {
+        display: none;
+    }
 }

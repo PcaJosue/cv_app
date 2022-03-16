@@ -1,13 +1,19 @@
-<div fxLayout='row' style='padding: 0rem 2rem' fxLayoutAlign='space-between center'>
-    <button mat-mini-fab color="primary" (click)="home()">
-        <mat-icon>home</mat-icon>
-    </button>
-    <div class='title'>Curriculum Vitae APP</div>
-    <mat-form-field appearance="legacy">
-        <mat-select (selectionChange)='modifyLanguage($event)' [(ngModel)]='code' name='lan'>
-            <mat-option value="en">English </mat-option>
-            <mat-option value="es">Español </mat-option>
-        </mat-select>
-    </mat-form-field>
+<div class="content">
+    <div fxLayout='row' style='padding: 0rem 2rem' fxLayoutAlign='space-between center'>
+        <button mat-mini-fab color="primary" (click)="home()">
+            <mat-icon>home</mat-icon>
+        </button>
+        <div class='title'>Curriculum Vitae APP</div>
+        <mat-form-field appearance="legacy">
+            <mat-select (selectionChange)='modifyLanguage($event)' [(ngModel)]='code' name='lan'>
+                <mat-option value="en">English </mat-option>
+                <mat-option value="es">Español </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>
+
+<div class="mobile">
+    Not available for mobiles, please use a desktop
+</div>
