@@ -2,6 +2,7 @@ import { createReducer, on } from "@ngrx/store";
 import { SkillModel } from "src/app/models/skill.model";
 import * as actions from "./skill.actions";
 
+const INITIAL: SkillModel[] = []
 
 /**actions */
 const onAddSkillInformationList = (state: any, { data }) => {
@@ -13,6 +14,9 @@ const onAddSkillInformation = (state: any, { data }) => {
     list.push(data);
     return list;
 }
+const onClearSkillInformation = (state: any) => {
+    return INITIAL;
+}
 
 const onRemoveSkillInformation = (state: any, { index }) => {
     const list = [...state];
@@ -20,7 +24,6 @@ const onRemoveSkillInformation = (state: any, { index }) => {
     return list;
 }
 
-const INITIAL: SkillModel[] = []
 
 /*reducer*/
 const _skillReducer = createReducer(
@@ -28,6 +31,7 @@ const _skillReducer = createReducer(
     on(actions.addSkillInformationList, onAddSkillInformationList),
     on(actions.addSkillInformation, onAddSkillInformation),
     on(actions.removeSkillInformation, onRemoveSkillInformation),
+    on(actions.clearSkillInformation, onClearSkillInformation),
 );
 
 

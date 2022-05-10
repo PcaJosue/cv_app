@@ -117,7 +117,6 @@ export class CreatePdfService {
         ]
       })
 
-      console.log('data', data);
 
       if (data.personal) {
         const personal = data.personal;

@@ -3,10 +3,15 @@ import { sortArray } from "src/app/common/helpers/helpers";
 import { AcademicModel } from "src/app/models/academic.model";
 import * as actions from "./academic.actions";
 
+const INITIAL: AcademicModel[] = []
 
 /**actions */
 const onAddAcademicInformationList = (state: any, { data }) => {
     return sortArray([...data], 'startDate');
+}
+
+const onClearAcademicInformationList = (state: any) => {
+    return INITIAL;
 }
 
 const onAddAcademicInformation = (state: any, { data }) => {
@@ -21,7 +26,6 @@ const onRemoveAcademicInformation = (state: any, { index }) => {
     return sortArray(list, 'startDate');;
 }
 
-const INITIAL: AcademicModel[] = []
 
 /*reducer*/
 const _academicReducer = createReducer(
@@ -29,6 +33,7 @@ const _academicReducer = createReducer(
     on(actions.addAcademicInformationList, onAddAcademicInformationList),
     on(actions.addAcademicInformation, onAddAcademicInformation),
     on(actions.removeAcademicInformation, onRemoveAcademicInformation),
+    on(actions.clearAcademicInformation, onClearAcademicInformationList),
 );
 
 

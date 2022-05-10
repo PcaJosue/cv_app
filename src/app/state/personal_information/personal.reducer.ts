@@ -1,18 +1,23 @@
 import { createReducer, on } from "@ngrx/store";
 import * as actions from "./personal.actions";
 
+const INITIAL: any = {}
+
 /**actions */
 const onAddPersonalInformation = (state: any, { data }) => {
-    console.log('state', state);
     return data;
 }
 
-const INITIAL: any = {}
+const onClearPersonalInformation = (state: any) => {
+    return INITIAL;
+}
+
 
 /*reducer*/
 const _personalReducer = createReducer(
     INITIAL,
     on(actions.addPersonalInformation, onAddPersonalInformation),
+    on(actions.clearPersonalInformation, onClearPersonalInformation),
 );
 
 

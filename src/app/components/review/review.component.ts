@@ -17,7 +17,7 @@ export class ReviewComponent implements OnInit {
   information: any;
   pdf: any;
   pdfSrc: any = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
-  labels$ = this.store.select(selectReview) ñ
+  labels$ = this.store.select(selectReview)
   name: string;
 
 
@@ -75,7 +75,6 @@ export class ReviewComponent implements OnInit {
   }
 
   exportData() {
-    console.log('information', this.information);
 
     const data = JSON.stringify(this.information);
     const blob = new Blob([data], { type: 'text/json' });

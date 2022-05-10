@@ -4,9 +4,15 @@ import { LaboralModel } from "src/app/models/laboral.model";
 import * as actions from "./laboral.actions";
 
 
+const INITIAL: LaboralModel[] = []
+
 /**actions */
 const onAddLaboralInformationList = (state: any, { data }) => {
     return sortArray([...data], 'startDate');;
+}
+
+const onClearLaboralInformationList = (state: any) => {
+    return INITIAL;
 }
 
 const onAddLaboralInformation = (state: any, { data }) => {
@@ -21,7 +27,6 @@ const onRemoveLaboralInformation = (state: any, { index }) => {
     return sortArray(list, 'startDate');;
 }
 
-const INITIAL: LaboralModel[] = []
 
 /*reducer*/
 const _laboralReducer = createReducer(
@@ -29,6 +34,7 @@ const _laboralReducer = createReducer(
     on(actions.addLaboralInformationList, onAddLaboralInformationList),
     on(actions.addLaboralInformation, onAddLaboralInformation),
     on(actions.removeLaboralInformation, onRemoveLaboralInformation),
+    on(actions.clearLaboralInformation, onClearLaboralInformationList),
 );
 
 

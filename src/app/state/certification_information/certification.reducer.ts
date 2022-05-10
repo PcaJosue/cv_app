@@ -3,6 +3,7 @@ import { sortArray } from "src/app/common/helpers/helpers";
 import { CertificationModel } from "src/app/models/certification.model";
 import * as actions from "./certification.actions";
 
+const INITIAL: CertificationModel[] = []
 
 /**actions */
 const onAddCertificationInformationList = (state: any, { data }) => {
@@ -14,6 +15,9 @@ const onAddCertificationInformation = (state: any, { data }) => {
     list.push(data);
     return sortArray(list, 'date');
 }
+const onClearCertificationInformation = (state: any) => {
+    return INITIAL;
+}
 
 const onRemoveCertificationInformation = (state: any, { index }) => {
     const list = [...state];
@@ -21,7 +25,6 @@ const onRemoveCertificationInformation = (state: any, { index }) => {
     return sortArray(list, 'date');
 }
 
-const INITIAL: CertificationModel[] = []
 
 /*reducer*/
 const _certificationReducer = createReducer(
@@ -29,6 +32,7 @@ const _certificationReducer = createReducer(
     on(actions.addCertificationInformationList, onAddCertificationInformationList),
     on(actions.addCertificationInformation, onAddCertificationInformation),
     on(actions.removeCertificationInformation, onRemoveCertificationInformation),
+    on(actions.clearCertificationInformation, onClearCertificationInformation),
 );
 
 

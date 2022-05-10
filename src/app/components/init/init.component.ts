@@ -1,14 +1,21 @@
+import { clearInterestInformation } from './../../state/interest_information/interest.actions';
+import { clearCertificationInformation } from './../../state/certification_information/certification.actions';
+import { clearAchievementInformation } from './../../state/achievement_information/achievement.actions';
+import { clearSkillInformation } from './../../state/skill_information/skill.actions';
+import { clearLanguageInformation } from './../../state/language_information/language.actions';
+import { clearLaboralInformation } from './../../state/laboral_information/laboral.actions';
+import { clearPersonalInformation } from './../../state/personal_information/personal.actions';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { addAcademicInformationList } from 'src/app/state/academic_information/academic.actions';
+import { addAcademicInformationList, clearAcademicInformation } from 'src/app/state/academic_information/academic.actions';
 import { addAchievementInformationList } from 'src/app/state/achievement_information/achievement.actions';
 import { addCertificationInformationList } from 'src/app/state/certification_information/certification.actions';
 import { addInterestInformationList } from 'src/app/state/interest_information/interest.actions';
 import { addLaboralInformationList } from 'src/app/state/laboral_information/laboral.actions';
 import { addLanguageInformationList } from 'src/app/state/language_information/language.actions';
 import { changeLanguage } from 'src/app/state/manage_language/manage_language.actions';
-import { addObjectiveInformation } from 'src/app/state/objective_information/objective.actions';
+import { addObjectiveInformation, clearObjectiveInformation } from 'src/app/state/objective_information/objective.actions';
 import { addPersonalInformation } from 'src/app/state/personal_information/personal.actions';
 import { addSkillInformationList } from 'src/app/state/skill_information/skill.actions';
 import * as selectors from '../../state/manage_language/manage_language.selects'
@@ -43,8 +50,21 @@ export class InitComponent implements OnInit {
     }
   }
 
+  createCV() {
+
+    this.store.dispatch(clearPersonalInformation());
+    this.store.dispatch(clearLaboralInformation());
+    this.store.dispatch(clearAcademicInformation());
+    this.store.dispatch(clearLanguageInformation());
+    this.store.dispatch(clearSkillInformation());
+    this.store.dispatch(clearAchievementInformation());
+    this.store.dispatch(clearCertificationInformation());
+    this.store.dispatch(clearInterestInformation());
+    this.store.dispatch(clearObjectiveInformation());
+    this.router.navigate(["create", "personal"])
+  }
+
   private loadData(data: any) {
-    console.log('data', data);
     this.store.dispatch(changeLanguage({ code: data.languageCode }));
     this.store.dispatch(addPersonalInformation({ data: data.personal }))
     this.store.dispatch(addLaboralInformationList({ data: data.laboral }))

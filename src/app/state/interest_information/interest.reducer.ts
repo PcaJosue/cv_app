@@ -2,6 +2,7 @@ import { createReducer, on } from "@ngrx/store";
 import { InterestModel } from "src/app/models/interest.model";
 import * as actions from "./interest.actions";
 
+const INITIAL: InterestModel[] = []
 
 /**actions */
 const onAddInterestInformationList = (state: any, { data }) => {
@@ -13,6 +14,9 @@ const onAddInterestInformation = (state: any, { data }) => {
     list.push(data);
     return list;
 }
+const onClearInterestInformation = (state: any) => {
+    return INITIAL;
+}
 
 const onRemoveInterestInformation = (state: any, { index }) => {
     const list = [...state];
@@ -20,7 +24,6 @@ const onRemoveInterestInformation = (state: any, { index }) => {
     return list;
 }
 
-const INITIAL: InterestModel[] = []
 
 /*reducer*/
 const _interestReducer = createReducer(
@@ -28,6 +31,7 @@ const _interestReducer = createReducer(
     on(actions.addInterestInformationList, onAddInterestInformationList),
     on(actions.addInterestInformation, onAddInterestInformation),
     on(actions.removeInterestInformation, onRemoveInterestInformation),
+    on(actions.clearInterestInformation, onClearInterestInformation),
 );
 
 

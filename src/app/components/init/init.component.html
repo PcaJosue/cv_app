@@ -1,5 +1,5 @@
 <div class='content'>
-    <mat-card (click)='router.navigate(["create","personal"])' class='item'>
+    <mat-card (click)='createCV()' class='item'>
         <mat-icon class='item__icon'>add_circle_outline</mat-icon>
         <div class='item__description'>{{(labels$ | async).create}}</div>
     </mat-card>

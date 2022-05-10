@@ -3,6 +3,7 @@ import { sortArray } from "src/app/common/helpers/helpers";
 import { AchievementModel } from "src/app/models/achievement.model";
 import * as actions from "./achievement.actions";
 
+const INITIAL: AchievementModel[] = []
 
 /**actions */
 const onAddAchievementInformationList = (state: any, { data }) => {
@@ -14,6 +15,9 @@ const onAddAchievementInformation = (state: any, { data }) => {
     list.push(data);
     return sortArray(list, 'date');
 }
+const onClearAchievementInformation = (state: any) => {
+    return INITIAL;
+}
 
 const onRemoveAchievementInformation = (state: any, { index }) => {
     const list = [...state];
@@ -21,7 +25,6 @@ const onRemoveAchievementInformation = (state: any, { index }) => {
     return sortArray(list, 'date');;
 }
 
-const INITIAL: AchievementModel[] = []
 
 /*reducer*/
 const _achievementReducer = createReducer(
@@ -29,6 +32,7 @@ const _achievementReducer = createReducer(
     on(actions.addAchievementInformationList, onAddAchievementInformationList),
     on(actions.addAchievementInformation, onAddAchievementInformation),
     on(actions.removeAchievementInformation, onRemoveAchievementInformation),
+    on(actions.clearAchievementInformation, onClearAchievementInformation),
 );
 
 

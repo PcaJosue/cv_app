@@ -11,10 +11,6 @@ export class AppComponent {
 
   public code: string = 'en';
   constructor(private store: Store, private router: Router) {
-    this.store.subscribe(state => {
-      console.log('state', state)
-    })
-
   }
 
 
