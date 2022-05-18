@@ -136,7 +136,7 @@ export class CreatePdfService {
       }
 
 
-      if (data.language) {
+      if (data.language?.length > 0) {
         const language = data.language;
 
 
@@ -157,7 +157,7 @@ export class CreatePdfService {
       }
 
 
-      if (data.skill) {
+      if (data.skill?.length > 0) {
         const skills = data.skill;
         skillData.push({ text: labels.skill, style: 'title', margin: [0, 10, 0, 0] });
         skillData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 175, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
@@ -171,7 +171,7 @@ export class CreatePdfService {
         }
       }
 
-      if (data.interest) {
+      if (data.interest?.length > 0) {
         const interests = data.interest;
         interestData.push({ text: labels.interest, style: 'title', margin: [0, 10, 0, 0] });
         interestData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 175, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
@@ -187,7 +187,7 @@ export class CreatePdfService {
 
       }
 
-      if (data.academic) {
+      if (data.academic?.length > 0) {
         const academics = data.academic;
         academicData.push({ text: labels.academic, style: 'title', margin: [0, 10, 0, 0] });
         academicData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 400, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
@@ -197,7 +197,7 @@ export class CreatePdfService {
         }
       }
 
-      if (data.laboral) {
+      if (data.laboral?.length > 0) {
         laboralData.push({ text: labels.laboral, style: 'title', margin: [0, 10, 0, 0] });
         laboralData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 400, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
         for (let laboral of data.laboral) {
@@ -207,7 +207,7 @@ export class CreatePdfService {
         }
       }
 
-      if (data.certification) {
+      if (data.certification?.length > 0) {
         certificationData.push({ text: labels.certification, style: 'title', margin: [0, 10, 0, 0] });
         certificationData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 400, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
         for (let certification of data.certification) {
@@ -216,7 +216,7 @@ export class CreatePdfService {
         }
       }
 
-      if (data.achievement) {
+      if (data.achievement?.length > 0) {
         achievementData.push({ text: labels.achievement, style: 'title', margin: [0, 10, 0, 0] });
         achievementData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 400, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
         for (let achiev of data.achievement) {
