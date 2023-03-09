@@ -1,41 +1,43 @@
 <form [formGroup]="interestForm">
-    <div class='item'>
+  <div class='item'>
 
-        <div class="w-full" fxLayout='row' fxLayoutAlign='space-between center'>
-            <div class="item__title">{{(labels$ | async).title}}</div>
-            <div fxLayout='row' fxLayoutGap='1rem'>
-                <button mat-stroked-button type='button' (click)='goTo("back")' color="primary">
-                    {{(buttons$ | async).back}}
-                </button>
-                <button mat-raised-button type='button' (click)='goTo("next")' color="primary">
-                    {{(buttons$ | async).next}}
-                </button>
-            </div>
-        </div>
+      <div class="w-full" fxLayout='row' fxLayoutAlign='space-between center'>
+          <div class="item__title">{{(labels$ | async).title}}</div>
+          <div fxLayout='row' fxLayoutGap='1rem'>
+              <button mat-stroked-button type='button' (click)='goTo("back")' color="primary">
+                  {{(buttons$ | async).back}}
+              </button>
+              <button mat-raised-button type='button' (click)='goTo("next")' color="primary">
+                  {{(buttons$ | async).next}}
+              </button>
+          </div>
+      </div>
 
-        <div class='w-full' class='laboral__content'>
-            <div class='w-full' fxLayout='row' fxLayoutGap='2rem'>
+      <div class='w-full' class='laboral__content'>
+          <div class='w-full' fxLayout='row' fxLayoutGap='2rem'>
 
-                <mat-form-field appearance="outline">
-                    <mat-label>{{(labels$ | async).name}}</mat-label>
-                    <input matInput formControlName="name" [placeholder]='(labels$ | async).placeholder.name'>
-                </mat-form-field>
+              <mat-form-field appearance="outline">
+                  <mat-label>{{(labels$ | async).name}}</mat-label>
+                  <input matInput formControlName="name" [placeholder]='(labels$ | async).placeholder.name'>
+              </mat-form-field>
 
-                <button style="align-self:center" mat-raised-button type='submit' color="primary"
-                    (click)='addInterestInformation()'>
-                    {{(buttons$ | async).save}}
-                </button>
+              <button style="align-self:center" mat-raised-button type='submit' color="primary"
+                  (click)='addInterestInformation()'>
+                  {{(buttons$ | async).save}}
+              </button>
 
-            </div>
+          </div>
 
-            <mat-divider></mat-divider>
+          <mat-divider></mat-divider>
 
-            <div class='w-full' *ngIf='(interestList$ | async)?.length>0' class='interest'>
-                <div class='interest__title'>{{(labels$ | async).myInformation}}:</div>
-                <ng-container *ngFor='let interest of interestList$ | async;let i =index'>
+          <div class='w-full' *ngIf='interests?.length>0' class="interest">
+              <div class='interest__title'>{{(labels$ | async).myInformation}}:</div>
+              <div cdkDropList  (cdkDropListDropped)="drop($event)">
+                <div *ngFor='let interest of interests ;let i =index' cdkDrag>
                     <div class="interest__item">
                         <div class="interest__item__header">
                             <div class="interest__item__header__title">
+                              <mat-icon style="cursor: move;">drag_indicator</mat-icon>
                                 {{interest.name}}
                             </div>
                             <div class="interest__item__header__actions">
@@ -46,9 +48,10 @@
                             </div>
                         </div>
                     </div>
-                </ng-container>
-            </div>
+                  </div>
+              </div>
+          </div>
 
-        </div>
-    </div>
+      </div>
+  </div>
 </form>

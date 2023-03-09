@@ -11,6 +11,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 
@@ -27,7 +28,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         MatSnackBarModule,
         MatCheckboxModule,
         MatChipsModule,
-        MatTooltipModule
+        MatTooltipModule,
+        DragDropModule
 
 
 

@@ -1,3 +1,5 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { InterestModel } from 'src/app/models/interest.model';
 import { Component, OnInit } from '@angular/core';
 import { selectButtons, selectInterest, selectMessages } from 'src/app/state/manage_language/manage_language.selects';
 import * as selects from 'src/app/state/interest_information/interest.selects'
@@ -6,6 +8,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AlertService, AlertType } from 'src/app/services/alert.service';
+import { cloneDeep } from 'lodash';
 
 @Component({
   selector: 'app-interest',
@@ -18,6 +21,7 @@ export class InterestComponent implements OnInit {
   public messages$ = this.store.select(selectMessages);
   private messages;
   public interestList$ = this.store.select(selects.selectInterest);
+  public interests :InterestModel[];
   public buttons$ = this.store.select(selectButtons);
 
 
@@ -31,6 +35,7 @@ export class InterestComponent implements OnInit {
 
   ngOnInit(): void {
     this.messages$.subscribe(data => this.messages = data)
+    this.interestList$.subscribe(data => this.interests = data)
   }
 
 
@@ -59,6 +64,12 @@ export class InterestComponent implements OnInit {
   edit(data, index) {
     this.store.dispatch(actions.removeInterestInformation({ index: index }))
     this.interestForm.patchValue({ ...data })
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    const interests = cloneDeep(this.interests);
+    moveItemInArray(interests, event.previousIndex, event.currentIndex);
+    this.store.dispatch(actions.addInterestInformationList({ data: interests }))
   }
 
 

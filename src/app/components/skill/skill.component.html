@@ -1,68 +1,73 @@
 <form [formGroup]="skillForm">
-    <div class='item'>
+  <div class='item'>
 
-        <div class="w-full" fxLayout='row' fxLayoutAlign='space-between center'>
-            <div class="item__title">{{(labels$|async).title}}</div>
-            <div fxLayout='row' fxLayoutGap='1rem'>
-                <button mat-stroked-button type='button' (click)='goTo("back")' color="primary">
-                    {{(buttons$|async).back}}
-                </button>
-                <button mat-raised-button type='button' (click)='goTo("next")' color="primary">
-                    {{(buttons$|async).next}}
-                </button>
-            </div>
-        </div>
+      <div class="w-full" fxLayout='row' fxLayoutAlign='space-between center'>
+          <div class="item__title">{{(labels$|async).title}}</div>
+          <div fxLayout='row' fxLayoutGap='1rem'>
+              <button mat-stroked-button type='button' (click)='goTo("back")' color="primary">
+                  {{(buttons$|async).back}}
+              </button>
+              <button mat-raised-button type='button' (click)='goTo("next")' color="primary">
+                  {{(buttons$|async).next}}
+              </button>
+          </div>
+      </div>
 
-        <div class='w-full' class='skill__content'>
-            <div class='w-full' fxLayout='row' fxLayoutGap='2rem'>
+      <div class='w-full' class='skill__content'>
+          <div class='w-full' fxLayout='row' fxLayoutGap='2rem'>
 
-                <mat-form-field appearance="outline">
-                    <mat-label>{{(labels$|async).name}}</mat-label>
-                    <input matInput formControlName="name" placeholder='English'>
-                </mat-form-field>
-
-
-                <mat-form-field appearance="outline">
-                    <mat-label>{{(labels$|async).level}}</mat-label>
-                    <mat-select matNativeControl formControlName='level'>
-                        <mat-option *ngFor="let level of (labels$ | async ).levels" [value]="level">
-                            {{level.name}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-
-                <button style='align-self: center;' mat-raised-button type='submit' color="primary"
-                    (click)='addSkillInformation()'>
-                    {{(buttons$|async).save}}
-                </button>
+              <mat-form-field appearance="outline">
+                  <mat-label>{{(labels$|async).name}}</mat-label>
+                  <input matInput formControlName="name" placeholder='English'>
+              </mat-form-field>
 
 
-            </div>
+              <mat-form-field appearance="outline">
+                  <mat-label>{{(labels$|async).level}}</mat-label>
+                  <mat-select matNativeControl formControlName='level'>
+                      <mat-option *ngFor="let level of (labels$ | async ).levels" [value]="level">
+                          {{level.name}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field>
 
-            <mat-divider></mat-divider>
+              <button style='align-self: center;' mat-raised-button type='submit' color="primary"
+                  (click)='addSkillInformation()'>
+                  {{(buttons$|async).save}}
+              </button>
 
-            <div class='w-full' *ngIf='(skillList$ | async)?.length>0' class='skill'>
-                <div class='skill__title'>{{(labels$|async).myInformation}}</div>
-                <ng-container *ngFor='let skill of skillList$ | async;let i =index'>
-                    <div class="skill__item">
-                        <div class="skill__item__header">
-                            <div class="skill__item__header__title">
-                                {{skill.name}}
-                                <span class="skill__item__header__subtitle"> ({{skill.level.name}}) </span>
-                            </div>
-                            <div class="skill__item__header__actions">
-                                <mat-icon (click)='remove(i)' [matTooltip]="(buttons$|async).remove" color='warn'>
-                                    highlight_off
-                                </mat-icon>
-                                <mat-icon (click)='edit(skill,i)' [matTooltip]="(buttons$|async).edit" color='primary'>
-                                    edit
-                                </mat-icon>
-                            </div>
-                        </div>
-                    </div>
-                </ng-container>
-            </div>
 
-        </div>
-    </div>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class='w-full' *ngIf='(skillList$ | async)?.length>0' class='skill'>
+              <div class='skill__title'>{{(labels$|async).myInformation}}</div>
+
+              <div cdkDropList  (cdkDropListDropped)="drop($event)">
+                <div  *ngFor="let skill of skills;let i =index" cdkDrag>
+                  <div class="skill__item">
+                      <div class="skill__item__header">
+                          <div class="skill__item__header__title">
+                              <mat-icon style="cursor: move;">drag_indicator</mat-icon>
+                              {{skill.name}}
+                              <span class="skill__item__header__subtitle"> ({{skill.level.name}}) </span>
+                          </div>
+                          <div class="skill__item__header__actions">
+                              <mat-icon (click)='remove(i)' [matTooltip]="(buttons$|async).remove" color='warn'>
+                                  highlight_off
+                              </mat-icon>
+                              <mat-icon (click)='edit(skill,i)' [matTooltip]="(buttons$|async).edit" color='primary'>
+                                  edit
+                              </mat-icon>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+
+      </div>
+  </div>
 </form>
