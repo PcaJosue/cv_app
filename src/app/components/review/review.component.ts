@@ -19,7 +19,9 @@ export class ReviewComponent implements OnInit {
   pdfSrc: any = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   labels$ = this.store.select(selectReview)
   name: string;
-
+  primaryColorControl = new FormControl('#ebeaeb')
+  secondaryColorControl = new FormControl('#587181')
+  showExportTooltip = true;
 
 
   constructor(private store: Store, private router: Router, private pdfService: CreatePdfService) { }
@@ -33,13 +35,17 @@ export class ReviewComponent implements OnInit {
       this.information.languageCode = this.information.manage_language.language;
       delete this.information.manage_language;
       this.createPdf(this.format.value, this.information)
-      this.name = `${this.information.personal.firstName}_${this.information.personal.lastName} `
+      this.name = `${this.information.personal.firstName}_${this.information.personal.lastName} `;
+      setTimeout(() => this.showExportTooltip=false, 5000);
 
     })
 
     this.format.valueChanges.subscribe(format => {
       this.createPdf(format, this.information)
     })
+
+    this.primaryColorControl.valueChanges.subscribe(()=> this.createPdf(this.format.value,this.information))
+    this.secondaryColorControl.valueChanges.subscribe(()=> this.createPdf(this.format.value,this.information))
 
   }
 
@@ -49,7 +55,7 @@ export class ReviewComponent implements OnInit {
       this.pdf = await this.pdfService.createPdf(data);
 
     } else if (this.formats[1] === format) {
-      this.pdf = await this.pdfService.createCoolPdf(data);
+      this.pdf = await this.pdfService.createCoolPdf(data,this.primaryColorControl.value,this.secondaryColorControl.value);
     }
 
 
@@ -58,12 +64,16 @@ export class ReviewComponent implements OnInit {
     })
   }
 
+  async refreshPdf(){
+    this.pdf = await this.pdfService.createCoolPdf(this.information,this.primaryColorControl.value,this.secondaryColorControl.value);
+  }
+
   async download() {
     if (this.formats[0] === this.format.value) {
       this.pdf = await this.pdfService.createPdf(this.information).download(`${this.name ? this.name : ''}_${new Date().getTime().toString()}.pdf`);;
 
     } else if (this.formats[1] === this.format.value) {
-      this.pdf = await this.pdfService.createCoolPdf(this.information);
+      this.pdf = await this.pdfService.createCoolPdf(this.information,this.primaryColorControl.value,this.secondaryColorControl.value);
       this.pdf.download(`${this.name ? this.name : ''}_${new Date().getTime().toString()}.pdf`);;
     }
 

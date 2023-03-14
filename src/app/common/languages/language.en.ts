@@ -120,7 +120,7 @@ export const LANGUAGE_EN = {
     buttons: {
         back: 'Back',
         next: 'Next',
-        save: 'Save',
+        save: 'Confirm',
         edit: 'Edit',
         add: 'Add',
         remove: 'Remove'

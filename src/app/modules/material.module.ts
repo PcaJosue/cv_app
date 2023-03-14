@@ -12,6 +12,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { NgxColorsModule } from 'ngx-colors';
 
 
 
@@ -29,11 +30,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
         MatCheckboxModule,
         MatChipsModule,
         MatTooltipModule,
-        DragDropModule
-
-
-
-
+        DragDropModule,
+        NgxColorsModule
     ],
     providers: [],
 })

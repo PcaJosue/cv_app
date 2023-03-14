@@ -1,5 +1,7 @@
 <div class="header w-full" fxLayout='row' fxLayoutAlign='space-between center'>
 
+
+
   <div class="item__title">
       <button mat-stroked-button type='button' (click)='goTo("back")' color="primary">
           <mat-icon>arrow_back_ios_new</mat-icon>
@@ -7,7 +9,7 @@
       <span>{{(labels$ |async).title}}</span>
   </div>
 
-  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem">
+  <div style='position: relative;' fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem">
 
       <mat-form-field appearance="legacy">
           <mat-label>Select Format:</mat-label>
@@ -24,9 +26,16 @@
           <mat-icon>file_download</mat-icon>
       </button>
 
-      <button (click)="exportData()" mat-fab color="primary" [matTooltip]="(labels$ |async).export">
+      <button  (click)="exportData()" mat-fab color="primary" [matTooltip]="(labels$ |async).export">
           <mat-icon>ios_share</mat-icon>
       </button>
+
+        <div class="left" *ngIf="showExportTooltip">
+          <h3>We don't save your information.</h3>
+          <p>If you want to quickly edit your resume in the future do not forget to export your information and keep the file. </p>
+          <i></i>
+
+      </div>
 
   </div>
 
@@ -34,7 +43,21 @@
 
 </div>
 
-<div *ngIf="format.value == formats[1]">
+<div style="margin-bottom: 2rem;" *ngIf="format.value == formats[1]" fxLayout="flex" fxLayoutAlign="center center" fxLayoutGap="2rem">
+
+
+  <div fxLayout="flex" fxLayoutAlign="start center" fxLayoutGap="2rem">
+    <ngx-colors ngx-colors-trigger  [formControl]="secondaryColorControl" ></ngx-colors>
+    <div>Primary Color</div>
+  </div>
+
+
+  <div fxLayout="flex" fxLayoutAlign="start center" fxLayoutGap="0.5rem">
+    <ngx-colors ngx-colors-trigger  [formControl]="primaryColorControl" ></ngx-colors>
+    <div>Secondary Color</div>
+  </div>
+
+
 </div>
 
 

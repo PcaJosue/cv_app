@@ -9,36 +9,34 @@
     height: 90%;
 }
 
-.item {
-    width: 45%;
-    height: 90%;
-    background-color: $main-item-color;
-    color: $white-color;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 0.5rem;
-    &:hover {
-        cursor: pointer;
-        background-color: $main-item-color-dark;
-        transform: translateY(2px);
+img{
+  width: 50vw;
+  height: 95vh;
+}
+
+.main{
+  &__title {
+    span:first-child{
+      font-size: 18px;
+      color: $main-item-color-dark ;
+      font-weight: bold;
+      font-size: 50px;
     }
-    &__description {
-        font-size: 2.5rem;
+
+    span:nth-child(2){
+      font-size: 18px;
+      color: $dark-color;
+      font-weight: bold;
+      font-size: 50px;
     }
-    &__icon {
-        font-size: 8rem;
-        width: 8rem;
-        height: 8rem;
-    }
-    &-label {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
+  }
+
+  &__phrase{
+    font-size: 24px;
+    font-weight: bold;
+  }
+  &__description{
+    font-size: 15px;
+    width: 50%;
+  }
 }

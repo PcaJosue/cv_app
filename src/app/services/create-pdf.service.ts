@@ -17,8 +17,9 @@ export class CreatePdfService {
 
 
   public labels;
+
   private colors: any = {
-    gray: '#919190',
+    gray: '#616A6B ',
     primary: '#ebeaeb',
     secondary: '#587181',
     circle: '#d2d2d2',
@@ -77,7 +78,10 @@ export class CreatePdfService {
     })
   }
 
-  async createCoolPdf(data: any) {
+  async createCoolPdf(data: any, primaryColor, secondaryColor) {
+
+    this.colors.primary = primaryColor;
+    this.colors.secondary =secondaryColor;
 
     const labels = this.labels.cool;
     const languageLevels = [...Array(7).keys()]
@@ -272,11 +276,11 @@ export class CreatePdfService {
 
     pdf.pageSize('A4');
     this.setStyles(pdf);
-    pdf.add({ text: `${_.upperCase(labels.title)} - ${_.capitalize(data.personal.firstName)} ${_.capitalize(data.personal.lastName)}`, style: 'header' })
+    pdf.add({ text: `${_.capitalize(data.personal.firstName)} ${_.capitalize(data.personal.lastName)}`, style: 'header' })
 
     pdf.add({
       columns: [
-        { text: _.capitalize(data.personal.ocupation), style: 'subheader', color: this.colors.gray, alignment: 'left' },
+        { text: _.upperCase(data.personal.ocupation), style: 'subheader', color: this.colors.gray, alignment: 'left' },
         { text: `${_.capitalize(data.personal.state)} - ${_.capitalize(data.personal.country)}`, color: this.colors.gray, alignment: 'right' }
       ]
     })
@@ -287,13 +291,11 @@ export class CreatePdfService {
     personalInfo.push({ text: [{ text: '', style: 'icons' }, ' ', { text: data.personal.phone }] })
     personalInfo.push({ text: [{ text: '', style: 'icons' }, ' ', { text: data.personal.email, link: `mailto:${data.personal.email}` }] })
     if (data.personal.networks.other) personalInfo.push({ text: [{ text: '', style: 'icons' }, ' ', { text: data.personal.networks.other, link: data.personal.networks.other }] })
-
-
-    if (data.personal.networks.github) links.push({ text: '', style: 'icons', link: data.personal.networks.github })
-    if (data.personal.networks.linkedin) links.push({ text: '', style: 'icons', link: data.personal.networks.linkedin })
-    if (data.personal.networks.instagram) links.push({ text: '', style: 'icons', link: data.personal.networks.instagram })
-    if (data.personal.networks.facebook) links.push({ text: '', style: 'icons', link: data.personal.networks.facebook })
-    if (data.personal.networks.twitter) links.push({ text: '', style: 'icons', link: data.personal.networks.twitter })
+    if (data.personal.networks.github) personalInfo.push({ text: [{ text: '', style: 'icons' }, ' ', { text: data.personal.networks.github, link: data.personal.networks.github }] })
+    if (data.personal.networks.linkedin) personalInfo.push({ text: [{ text: '', style: 'icons' }, ' ', { text: data.personal.networks.linkedin, link: data.personal.networks.linkedin }] })
+    if (data.personal.networks.instagram) personalInfo.push({ text: [{ text: '', style: 'icons' }, ' ', { text: data.personal.networks.instagram, link: data.personal.networks.instagram }] })
+    if (data.personal.networks.twitter) personalInfo.push({ text: [{ text: '', style: 'icons' }, ' ', { text: data.personal.networks.twitter, link: data.personal.networks.twitter }] })
+    if (data.personal.networks.facebook) personalInfo.push({ text: [{ text: '', style: 'icons' }, ' ', { text: data.personal.networks.twitter, link: data.personal.networks.facebook }] })
 
     pdf.add({
       columns: [
@@ -310,6 +312,32 @@ export class CreatePdfService {
       })
     }
 
+    if (data.academic.length > 0) {
+
+      pdf.add({ text: `${_.startCase(labels.academic)}`, style: 'header' })
+      pdf.add({ margin: [0, 5, 0, 15], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 500, y2: 0, lineWidth: 2 }] });
+
+      const academicInformation = data.academic.map(academic => {
+
+        const information = [];
+        information.push({ text: `${_.capitalize(academic.school)}`,style: 'subheader', margin: [0, 0, 0, 3] });
+        information.push({ text: _.capitalize(academic.career), style:'subheaderNoBold', margin: [0, 0, 0, 3] });
+        information.push({
+          columns: [
+            { text: `${academic.startDate} - ${academic.endDate ? academic.endDate : 'today'}`, color: this.colors.gray },
+            { text: ` ${_.capitalize(academic.location)}`, color: this.colors.gray, alignment: 'right' }
+          ], margin: [0, 0, 0, 3]
+        })
+        return { stack: information, margin: [0, 0, 0, 5] }
+      })
+
+      pdf.add({
+        stack: academicInformation,
+        margin: [0, 0, 0, 15]
+      })
+
+    }
+
     if (data.laboral.length > 0) {
 
       pdf.add({ text: `${_.startCase(labels.laboral)}`, style: 'header' })
@@ -320,8 +348,8 @@ export class CreatePdfService {
         const information = [];
         information.push({
           text: [
-            { text: _.capitalize(laboral.job), style: 'subheader' },
-            { text: `   ( ${_.capitalize(laboral.employer)} )`, color: this.colors.gray, alignment: 'right' }
+            { text: _.capitalize(laboral.employer), style: 'subheader' },
+            { text: `   ( ${_.capitalize(laboral.job)} )`, color: this.colors.gray, alignment: 'right' }
 
           ], margin: [0, 0, 0, 3]
         })
@@ -342,31 +370,7 @@ export class CreatePdfService {
 
     }
 
-    if (data.academic.length > 0) {
 
-      pdf.add({ text: `${_.startCase(labels.academic)}`, style: 'header' })
-      pdf.add({ margin: [0, 5, 0, 15], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 500, y2: 0, lineWidth: 2 }] });
-
-      const academicInformation = data.academic.map(academic => {
-
-        const information = [];
-        information.push({ text: _.capitalize(academic.career), style: 'subheader', margin: [0, 0, 0, 3] });
-        information.push({ text: `${_.capitalize(academic.school)}`, color: this.colors.gray, margin: [0, 0, 0, 3] });
-        information.push({
-          columns: [
-            { text: `${academic.startDate} - ${academic.endDate ? academic.endDate : 'today'}`, color: this.colors.gray },
-            { text: ` ${_.capitalize(academic.location)}`, color: this.colors.gray, alignment: 'right' }
-          ], margin: [0, 0, 0, 3]
-        })
-        return { stack: information, margin: [0, 0, 0, 5] }
-      })
-
-      pdf.add({
-        stack: academicInformation,
-        margin: [0, 0, 0, 15]
-      })
-
-    }
 
     if (data.skill.length > 0) {
       pdf.add({ text: `Skills`, style: 'header' })
@@ -510,6 +514,9 @@ export class CreatePdfService {
       subheader: {
         fontSize: 14,
         bold: true
+      },
+      subheaderNoBold:{
+        fontSize: 14,
       },
       title: {
         fontSize: 11,

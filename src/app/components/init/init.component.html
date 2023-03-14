@@ -1,13 +1,19 @@
 <div class='content'>
-    <mat-card (click)='createCV()' class='item'>
-        <mat-icon class='item__icon'>add_circle_outline</mat-icon>
-        <div class='item__description'>{{(labels$ | async).create}}</div>
-    </mat-card>
-    <mat-card class='item'>
-        <label for="upload-cv" class='item-label'>
-            <mat-icon class='item__icon'>upload</mat-icon>
-            <div class='item__description'>{{(labels$ | async).upload}}</div>
-        </label>
-    </mat-card>
-    <input id="upload-cv" (change)="onUploadFileChanged($event)" type="file" style="display: none;">
+
+    <div class="main" fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="3rem">
+      <div class="main__title"><span>Curriculum</span> &nbsp; <span>Vitae</span></div>
+      <div class="main__phrase">Create Your Future with Our Professional Resumes in our APP</div>
+      <div class="main__description">
+        To create an effective CV, it's important to tailor it to the job you are applying for. This means including relevant keywords and phrases that match the job description. Using clear, concise language and bullet points can also make your CV easier to read and understand.
+      </div>
+
+      <div fxLayout="flex" fxLayoutGap="2rem">
+        <input  #fileInput id="upload-cv" (change)="onUploadFileChanged($event)" type="file" style="display: none;">
+        <button  (click)="fileInput.click()"  mat-stroked-button color="primary">{{(labels$ | async).upload}}</button>
+        <button mat-raised-button color="primary" (click)='createCV()'>{{(labels$ | async).create}}</button>
+      </div>
+    </div>
+
+    <img src="assets/images/cv.jpg">
+
 </div>

@@ -28,6 +28,7 @@
     "@ngrx/store": "^13.0.2",
     "lodash": "^4.17.21",
     "ng2-pdf-viewer": "^7.0.2",
+    "ngx-colors": "3.0.0",
     "pdfmake": "^0.1.70",
     "pdfmake-wrapper": "^2.1.1",
     "rxjs": "~6.5.5",
