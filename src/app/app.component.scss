@@ -1,5 +1,6 @@
 @import "./styles/colors.scss";
 
+
 .container {
     height: 100vh;
 }
@@ -15,14 +16,29 @@
 }
 
 .mobile {
-    background-color: $main-item-color;
-    color: $white-color;
     display: flex;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: large;
+    position: relative;
+
+}
+
+.mobile::before{
+  content:"";
+  background-image: url('./../assets/images/cv.jpg');
+  background-repeat: round;
+  opacity: 0.1; /* set the opacity value between 0 to 1 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+
+
 }
 
 @media (max-width: 900px) {
@@ -41,4 +57,34 @@
     .mobile {
         display: none;
     }
+}
+
+.main{
+  &__title {
+    span:first-child{
+      font-size: 18px;
+      color: $main-item-color-dark ;
+      font-weight: bold;
+      font-size: 50px;
+    }
+
+    span:nth-child(2){
+      font-size: 18px;
+      color: $dark-color;
+      font-weight: bold;
+      font-size: 50px;
+    }
+  }
+
+  &__phrase{
+    font-size: 24px;
+    font-weight: bold;
+  }
+  &__description{
+    font-size: 22px;
+    width: 75%;
+    color: #cc2032;
+    line-height: 36px;
+
+  }
 }
