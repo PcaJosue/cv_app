@@ -3,7 +3,9 @@ export const LANGUAGE_ES = {
     main: {
         create: 'Crear CV',
         upload: 'Importar Datos',
-        title: 'Curriculum Vitae App'
+        title: 'Curriculum Vitae App',
+        subtitle: 'Crea tu futuro con nuestros currículos profesionales en nuestra APP',
+        description: "Para crear un CV eficaz, es importante adaptarlo al puesto que solicita. Esto significa incluir palabras clave y frases relevantes que coincidan con la descripción del puesto. El uso de un lenguaje claro y conciso y de viñetas también puede facilitar la lectura y comprensión del CV."
     },
     menu: {
         title: 'Secciones',

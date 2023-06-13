@@ -3,7 +3,9 @@ export const LANGUAGE_EN = {
     main: {
         create: 'Create CV',
         upload: 'Upload Data',
-        title: 'Curriculum Vitae App'
+        title: 'Curriculum Vitae App',
+        subtitle: 'Create Your Future with Our Professional Resumes in our APP',
+        description : "To create an effective CV, it's important to tailor it to the job you are applying for. This means including relevant keywords and phrases that match the job description. Using clear, concise language and bullet points can also make your CV easier to read and understand."
     },
     menu: {
         title: 'Sections',

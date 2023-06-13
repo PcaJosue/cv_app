@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve -o",
     "build": "ng build --configuration production --base-href=/cv_app/ ",
+    "deploy": "npx angular-cli-ghpages --dir=dist/CVAPP",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
