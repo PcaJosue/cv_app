@@ -36,16 +36,16 @@
                 <div *ngFor='let interest of interests ;let i =index' cdkDrag>
                     <div class="interest__item">
                         <div class="interest__item__header">
-                            <div class="interest__item__header__title">
-                              <mat-icon style="cursor: move;">drag_indicator</mat-icon>
-                                {{interest.name}}
-                            </div>
-                            <div class="interest__item__header__actions">
-                                <mat-icon (click)='remove(i)' [matTooltip]="(buttons$ | async).remove" color='warn'>
-                                    highlight_off</mat-icon>
-                                <mat-icon (click)='edit(interest,i)' [matTooltip]="(buttons$ | async).edit"
-                                    color='primary'>edit</mat-icon>
-                            </div>
+                          <div class="interest__item__header__actions">
+                              <mat-icon (click)='remove(i)' [matTooltip]="(buttons$ | async).remove" color='warn'>
+                                  highlight_off</mat-icon>
+                              <mat-icon (click)='edit(interest,i)' [matTooltip]="(buttons$ | async).edit"
+                                  color='primary'>edit</mat-icon>
+                          </div>
+                          <div class="interest__item__header__title">
+                            <mat-icon style="cursor: move;">drag_indicator</mat-icon>
+                              {{interest.name}}
+                          </div>
                         </div>
                     </div>
                   </div>

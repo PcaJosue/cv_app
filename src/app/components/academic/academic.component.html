@@ -68,22 +68,22 @@
                 <ng-container *ngFor='let academic of academicList$ | async;let i =index'>
                     <div class="academic__item">
                         <div class="academic__item__header">
-                            <div class="academic__item__header__title">
+                          <div class="academic__item__header__actions">
+                            <mat-icon (click)='remove(i)' [matTooltip]="(buttons$ | async).remove" color='warn'>
+                                highlight_off</mat-icon>
+                            <mat-icon (click)='edit(academic,i)' [matTooltip]="(buttons$ | async).edit"
+                                color='primary'>edit</mat-icon>
+                          </div>
+                          <div class="academic__item__header__title">
                                 {{academic.career}}
                                 <span class="academic__item__header__subtitle"> ({{academic.school}}) </span>
-                            </div>
-                            <div class="academic__item__header__actions">
-                                <mat-icon (click)='remove(i)' [matTooltip]="(buttons$ | async).remove" color='warn'>
-                                    highlight_off</mat-icon>
-                                <mat-icon (click)='edit(academic,i)' [matTooltip]="(buttons$ | async).edit"
-                                    color='primary'>edit</mat-icon>
-                            </div>
-                        </div>
-                        <div class="academic__item__details">
-                            <span>{{academic.startDate}} &nbsp; : &nbsp; {{academic.endDate ? academic.endDate :
-                                'unfinished' }}
-                            </span>
-                            <span>{{academic.location}}</span>
+                                <div class="academic__item__details">
+                                    <span>{{academic.startDate}} &nbsp; : &nbsp; {{academic.endDate ? academic.endDate :
+                                        'unfinished' }}
+                                    </span>
+                                    <span>{{academic.location}}</span>
+                                </div>
+                          </div>
                         </div>
                     </div>
                 </ng-container>

@@ -45,19 +45,19 @@
                 <ng-container *ngFor='let certification of certificationList$ | async;let i =index'>
                     <div class="certification__item">
                         <div class="certification__item__header">
-                            <div class="certification__item__header__title">
-                                {{certification.name}}
-                                <span class="certification__item__header__subtitle"> ({{certification.date}}) </span>
-                            </div>
-                            <div class="certification__item__header__actions">
-                                <mat-icon (click)='remove(i)' [matTooltip]="(buttons$ | async).remove" color='warn'>
-                                    highlight_off</mat-icon>
-                                <mat-icon (click)='edit(certification,i)' [matTooltip]="(buttons$ | async).edit"
-                                    color='primary'>edit</mat-icon>
-                            </div>
-                        </div>
-                        <div class="certification__item__details">
-                            <span>{{certification.school}}</span>
+                          <div class="certification__item__header__actions">
+                              <mat-icon (click)='remove(i)' [matTooltip]="(buttons$ | async).remove" color='warn'>
+                                  highlight_off</mat-icon>
+                              <mat-icon (click)='edit(certification,i)' [matTooltip]="(buttons$ | async).edit"
+                                  color='primary'>edit</mat-icon>
+                          </div>
+                          <div class="certification__item__header__title">
+                              {{certification.name}}
+                              <span class="certification__item__header__subtitle"> ({{certification.date}}) </span>
+                              <div class="certification__item__details">
+                                  <span>{{certification.school}}</span>
+                              </div>
+                          </div>
                         </div>
                     </div>
                 </ng-container>

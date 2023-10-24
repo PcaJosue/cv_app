@@ -46,16 +46,16 @@
                 <ng-container *ngFor='let achievement of achievementList$ | async;let i =index'>
                     <div class="achievement__item">
                         <div class="achievement__item__header">
-                            <div class="achievement__item__header__title">
-                                {{achievement.name}}
-                                <span class="achievement__item__header__subtitle"> ({{achievement.date}}) </span>
-                            </div>
-                            <div class="achievement__item__header__actions">
-                                <mat-icon (click)='remove(i)' [matTooltip]="(buttons$ | async).remove" color='warn'>
-                                    highlight_off</mat-icon>
-                                <mat-icon (click)='edit(achievement,i)' [matTooltip]="(buttons$ | async).edit"
-                                    color='primary'>edit</mat-icon>
-                            </div>
+                          <div class="achievement__item__header__actions">
+                              <mat-icon (click)='remove(i)' [matTooltip]="(buttons$ | async).remove" color='warn'>
+                                  highlight_off</mat-icon>
+                              <mat-icon (click)='edit(achievement,i)' [matTooltip]="(buttons$ | async).edit"
+                                  color='primary'>edit</mat-icon>
+                          </div>
+                          <div class="achievement__item__header__title">
+                              {{achievement.name}}
+                              <span class="achievement__item__header__subtitle"> ({{achievement.date}}) </span>
+                          </div>
                         </div>
                         <div class="achievement__item__details">
                             <span>{{achievement.description}}</span>

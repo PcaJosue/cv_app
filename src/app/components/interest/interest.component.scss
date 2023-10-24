@@ -17,7 +17,8 @@
         &__header {
             width: 100%;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
+            gap: 1rem;
             align-items: center;
             &__title {
                 font-size: 1.2rem;

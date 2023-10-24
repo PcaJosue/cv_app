@@ -205,7 +205,7 @@ export class CreatePdfService {
         laboralData.push({ text: labels.laboral, style: 'title', margin: [0, 10, 0, 0] });
         laboralData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 400, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
         for (let laboral of data.laboral) {
-          laboralData.push({ columns: [{ text: laboral.job, bold: true }, { alignment: 'right', style: 'secondaryText', text: `${laboral.startDate} - ${laboral.endDate ? laboral.endDate : 'today'}` }] })
+          laboralData.push({ columns: [{ text: laboral.job, bold: true }, { alignment: 'right', style: 'secondaryText', text: `${laboral.startDate} - ${laboral.endDate ? laboral.endDate : 'Today'} (${this.getAgeDIfference(laboral.endDate , laboral.startDate)})` }] })
           laboralData.push({ text: `${_.capitalize(laboral.employer)} - ${_.capitalize(laboral.city)}`, style: 'secondaryText' })
           laboralData.push({ ul: laboral.functions.split('\n').filter(l => l.length > 0).map(l => ({ text: l, style: 'description' })), margin: [0, 0, 0, 5] })
         }
@@ -355,7 +355,7 @@ export class CreatePdfService {
         })
         information.push({
           columns: [
-            { text: `${laboral.startDate} - ${laboral.endDate ? laboral.endDate : 'today'}`, color: this.colors.gray },
+            { text: `${laboral.startDate} - ${laboral.endDate ? laboral.endDate : 'Today'} (${this.getAgeDIfference(laboral.endDate , laboral.startDate)})`, color: this.colors.gray },
             { text: ` ${_.capitalize(laboral.city)} : ${_.capitalize(laboral.country)}`, color: this.colors.gray, alignment: 'right' }
           ], margin: [0, 0, 0, 3]
         })
@@ -541,6 +541,22 @@ export class CreatePdfService {
         color: this.colors.secondaryText
       }
     });
+  }
+
+  getAgeDIfference(endDate, startDate){
+    const date1= new Date(startDate);
+    const date2 = endDate ? new Date(endDate): new Date();
+
+    let yearDiff = date2.getFullYear() - date1.getFullYear();
+    let monthDiff = date2.getMonth() - date1.getMonth();
+
+    if(monthDiff < 0){
+      yearDiff--;
+      monthDiff += 12;
+    }
+
+    return (yearDiff > 0 ? `${yearDiff} years`:'' ) + (monthDiff > 0 ? ` ${monthDiff} months`:'')
+
   }
 }
 

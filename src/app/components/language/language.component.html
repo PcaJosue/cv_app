@@ -46,18 +46,18 @@
                 <ng-container *ngFor='let language of languageList$ | async;let i =index'>
                     <div class="language__item">
                         <div class="language__item__header">
-                            <div class="language__item__header__title">
-                                {{language.name}}
-                                <span class="language__item__header__subtitle"> ({{language.level.name}}) </span>
-                            </div>
-                            <div class="language__item__header__actions">
-                                <mat-icon (click)='remove(i)' [matTooltip]="(buttons$|async).remove" color='warn'>
-                                    highlight_off
-                                </mat-icon>
-                                <mat-icon (click)='edit(language,i)' [matTooltip]="(buttons$|async).edit"
-                                    color='primary'>edit
-                                </mat-icon>
-                            </div>
+                          <div class="language__item__header__actions">
+                              <mat-icon (click)='remove(i)' [matTooltip]="(buttons$|async).remove" color='warn'>
+                                  highlight_off
+                              </mat-icon>
+                              <mat-icon (click)='edit(language,i)' [matTooltip]="(buttons$|async).edit"
+                                  color='primary'>edit
+                              </mat-icon>
+                          </div>
+                          <div class="language__item__header__title">
+                              {{language.name}}
+                              <span class="language__item__header__subtitle"> ({{language.level.name}}) </span>
+                          </div>
                         </div>
                     </div>
                 </ng-container>
