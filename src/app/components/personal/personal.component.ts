@@ -28,7 +28,7 @@ export class PersonalComponent implements OnInit {
     ocupation: new FormControl(null, Validators.required),
     country: new FormControl(null, Validators.required),
     state: new FormControl(null, Validators.required),
-    phone: new FormControl(null, [Validators.required]),
+    phone: new FormControl(null, []),
     email: new FormControl(null, [Validators.required, Validators.email]),
     networks: new FormGroup({
       github: new FormControl(null),

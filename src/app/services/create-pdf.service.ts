@@ -129,7 +129,7 @@ export class CreatePdfService {
         personalData.push({ text: personal.ocupation, alignment: 'center', bold: true });
         personalData.push({ text: [{ text: '', style: 'icons' }, '   ', `${personal.firstName} ${personal.lastName}`] });
         personalData.push({ text: [{ text: '', style: 'icons' }, '   ', `${personal.email}`] });
-        personalData.push({ text: [{ text: '', style: 'icons' }, '   ', `${personal.phone}`] });
+        personal.phone && personalData.push({ text: [{ text: '', style: 'icons' }, '   ', `${personal.phone}`] });
 
         if (personal.networks?.other) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.other, link: personal.networks.other, style: 'link' }] });
         if (personal.networks?.linkedin) personalData.push({ text: [{ text: '', style: 'icons' }, '   ', { text: personal.networks.linkedin, link: personal.networks.linkedin, style: 'link' }] });
@@ -288,7 +288,7 @@ export class CreatePdfService {
 
     pdf.add({ margin: [0, 10, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 500, y2: 0, lineWidth: 2 }] });
 
-    personalInfo.push({ text: [{ text: '', style: 'icons' }, ' ', { text: data.personal.phone }] })
+    data.personal.phone && personalInfo.push({ text: [{ text: '', style: 'icons' }, ' ', { text: data.personal.phone }] })
     personalInfo.push({ text: [{ text: '', style: 'icons' }, ' ', { text: data.personal.email, link: `mailto:${data.personal.email}` }] })
     if (data.personal.networks.other) personalInfo.push({ text: [{ text: '', style: 'icons' }, ' ', { text: data.personal.networks.other, link: data.personal.networks.other }] })
     if (data.personal.networks.github) personalInfo.push({ text: [{ text: '', style: 'icons' }, ' ', { text: data.personal.networks.github, link: data.personal.networks.github }] })
@@ -348,8 +348,8 @@ export class CreatePdfService {
         const information = [];
         information.push({
           text: [
-            { text: _.capitalize(laboral.employer), style: 'subheader' },
-            { text: `   ( ${_.capitalize(laboral.job)} )`, color: this.colors.gray, alignment: 'right' }
+            { text: _.capitalize(laboral.job), style: 'subheader' },
+            { text: `   ( ${_.capitalize(laboral.employer)} )`, color: this.colors.gray, alignment: 'right' }
 
           ], margin: [0, 0, 0, 3]
         })

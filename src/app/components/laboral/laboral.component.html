@@ -42,14 +42,14 @@
 
                 <mat-form-field appearance="outline">
                     <mat-label>{{(labels$ | async).startDate}}</mat-label>
-                    <input matInput type='date' formControlName="startDate">
+                    <input matInput type='month' formControlName="startDate">
                 </mat-form-field>
 
                 <div fxLyout='row' fxLayoutGap='1rem'>
 
                     <mat-form-field appearance="outline">
                         <mat-label>{{(labels$ | async).endDate}}</mat-label>
-                        <input matInput type='date' formControlName="endDate">
+                        <input matInput type='month' formControlName="endDate">
                     </mat-form-field>
 
                     <mat-checkbox matInput name='working' [formControl]="isCurrentlyWorking" color="primary">
@@ -86,6 +86,7 @@
                             </div>
                         </div>
                         <div class="laboral__function__details">
+                            <span>{{laboral.employer}}</span>
                             <span>{{laboral.startDate}} &nbsp; : &nbsp; {{laboral.endDate ? laboral.endDate : 'today' }}
                             </span>
                             <span>{{laboral.country}}&nbsp; : &nbsp; {{laboral.city}}</span>

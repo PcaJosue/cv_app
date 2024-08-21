@@ -37,14 +37,14 @@
 
                 <mat-form-field appearance="outline">
                     <mat-label>{{(labels$ | async).startDate}}</mat-label>
-                    <input matInput type='date' formControlName="startDate">
+                    <input matInput type='month' formControlName="startDate">
                 </mat-form-field>
 
                 <div fxLyout='row' fxLayoutGap='1rem'>
 
                     <mat-form-field appearance="outline">
                         <mat-label>{{(labels$ | async).endDate}}</mat-label>
-                        <input matInput type='date' formControlName="endDate">
+                        <input matInput type='month' formControlName="endDate">
                     </mat-form-field>
 
                     <mat-checkbox matInput name='working' [formControl]="isCurrentlyStudying" color="primary">
