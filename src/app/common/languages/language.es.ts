@@ -109,6 +109,7 @@ export const LANGUAGE_ES = {
     objective: {
         title: 'Objetivo',
         name: 'Objetivo',
+        fit: 'Cómo mis habilidades se alinean con sus requisitos'
     },
     messages: {
         required: 'Por favor, llene todos los valores requeridos'

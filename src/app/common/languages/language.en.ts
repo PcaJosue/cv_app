@@ -109,6 +109,7 @@ export const LANGUAGE_EN = {
     objective: {
         title: 'Objective',
         name: 'Objective',
+        fit: 'How My Skills Align with Your Requirements'
     },
     messages: {
         required: 'Please, fill all required values'

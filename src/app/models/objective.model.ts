@@ -1,3 +1,4 @@
 export interface ObjectiveModel {
-    objective: string
+    objective: string,
+    fit: string
 }

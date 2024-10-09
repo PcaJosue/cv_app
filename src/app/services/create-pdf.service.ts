@@ -3,7 +3,7 @@ import { Canvas, Ellipse, ICreatePDF, Img, Line, PdfMakeWrapper, Polyline, Rect,
 import pdfFonts from "src/assets/fonts.js";
 import * as _ from 'lodash';
 import { Store } from '@ngrx/store';
-import { selectPDF } from '../state/manage_language/manage_language.selects';
+import { selectAll, selectPDF } from '../state/manage_language/manage_language.selects';
 
 
 const MAX_HEIGHT = 840;
@@ -17,6 +17,7 @@ export class CreatePdfService {
 
 
   public labels;
+  public allLabels;
 
   private colors: any = {
     gray: '#616A6B ',
@@ -31,7 +32,12 @@ export class CreatePdfService {
   constructor(private store: Store) {
     this.store.select(selectPDF).subscribe(labels => {
       this.labels = labels;
+    });
+
+    this.store.select(selectAll).subscribe(data=>{
+      this.allLabels = data;
     })
+
     PdfMakeWrapper.setFonts(pdfFonts, {
       icons: {
         normal: 'fontello.ttf',
@@ -187,9 +193,10 @@ export class CreatePdfService {
       if (data.objective) {
         objectiveData.push({ text: labels.profile, style: 'title', margin: [0, 10, 0, 0] });
         objectiveData.push({ margin: [0, 0, 0, 10], canvas: [{ type: 'line', x1: 0, y1: 0, x2: 400, y2: 0, lineWidth: 1, lineColor: this.colors.secondary }] });
-        objectiveData.push({ text: data.objective, style: 'description' })
+        objectiveData.push({ text: data.objective && typeof data.objective == 'string' ? data.objective : data.objective.objective, style: 'description' })
 
       }
+
 
       if (data.academic?.length > 0) {
         const academics = data.academic;
@@ -305,12 +312,38 @@ export class CreatePdfService {
       margin: [0, 0, 0, 15]
     })
 
-    if (data.objective) {
+
+    if (data.objective && typeof data.objective == 'string' ) {
       pdf.add({
         text: data.objective, style: 'description',
         margin: [0, 0, 0, 15]
       })
     }
+
+    if (data.objective && typeof data.objective != 'string' ) {
+      pdf.add({
+        text: data.objective.objective, style: 'description',
+        margin: [0, 0, 0, 15]
+      })
+
+
+      if(data.objective?.fit){
+
+        pdf.add({
+          text: this.allLabels.labels.objective.fit, style: 'subheader',
+          margin: [0, 0, 0, 15]
+        })
+
+        pdf.add({
+          ul: data.objective.fit ? data.objective.fit.split('\n').filter(l => l.length > 0).map(f => ({ text: f, style: 'description' })) : [] ,
+          margin: [0, 0, 0, 15]
+        })
+      }
+
+    }
+
+
+
 
     if (data.academic.length > 0) {
 

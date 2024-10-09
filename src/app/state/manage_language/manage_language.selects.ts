@@ -61,3 +61,7 @@ export const selectReview = (state: any) => {
 export const selectPDF = (state: any) => {
     return state.manage_language.labels.pdf
 }
+
+export const selectAll = (state: any) => {
+  return state.manage_language
+}

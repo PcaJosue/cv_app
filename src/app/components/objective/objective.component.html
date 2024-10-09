@@ -21,6 +21,12 @@
                     <textarea rows="20" matInput [formControl]="objective"></textarea>
                 </mat-form-field>
 
+
+                <mat-form-field fxFlex="40" appearance="outline">
+                  <mat-label>{{(labels$ | async).fit}}</mat-label>
+                  <textarea rows="20" matInput [formControl]="fit"></textarea>
+                </mat-form-field>
+
             </div>
         </div>
     </div>

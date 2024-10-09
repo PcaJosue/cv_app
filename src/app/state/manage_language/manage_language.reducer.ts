@@ -1,4 +1,4 @@
-import { createFeatureSelector, createReducer, createSelector, on } from "@ngrx/store";
+import { createReducer, on } from "@ngrx/store";
 import { LANGUAGE_EN } from "../../common/languages/language.en";
 import { LANGUAGE_ES } from "../../common/languages/language.es";
 import * as actions from './manage_language.actions'
